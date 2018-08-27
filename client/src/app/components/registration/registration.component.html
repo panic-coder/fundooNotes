@@ -1,3 +1,49 @@
-<p>
-  registration works!
-</p>
+<mat-card class="card">
+    <mat-card-header id="loginName">
+      REGISTRATION
+    </mat-card-header>
+    <mat-card-content>
+        <div class="container">
+            <mat-form-field>
+              <input matInput placeholder="Enter your name" name="name" [formControl]="name" required >
+              <mat-error *ngIf="name.invalid">{{getNameErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+      <div class="container">
+        <mat-form-field>
+          <input matInput placeholder="Enter your email" name="email" [formControl]="email" required >
+          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="container">
+          <mat-form-field>
+            <input matInput placeholder="Enter your phone number" name="phone" [formControl]="phone" required >
+            <mat-error *ngIf="phone.invalid">{{getPhoneErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="container">
+            <mat-form-field>
+                <input matInput  [matDatepicker]="picker" [max]="maxDate" placeholder="Choose a date of birth" [formControl]="dob" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="dob.invalid">{{getDateErrorMessage()}}</mat-error>
+
+            </mat-form-field>
+          </div>
+      <div class="container">
+        <mat-form-field>
+          <input matInput placeholder="Enter your password" name="password"  [formControl]="password" type="password" required >
+          <mat-error ng-if="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
+        </div>
+        <div class="container">
+        <mat-form-field>
+          <input matInput placeholder="Confirm  password" name="repeatPassword"  [formControl]="repeatPassword" type="password" required >
+          <mat-error ng-if="repeatPassword.invalid">{{getPasswordMatch(password.value, repeatPassword.value)}}</mat-error>
+        </mat-form-field>
+        </div>
+    </mat-card-content>
+    <div class="button-register" fxLayoutAlign="center">
+        <button mat-button  (click) = "getValues(email.value, password.value, repeatPassword.value)">Register</button>
+    </div>  
+  </mat-card>

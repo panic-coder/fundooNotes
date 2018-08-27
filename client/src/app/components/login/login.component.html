@@ -1,3 +1,29 @@
-<p>
-  login works!
-</p>
+<mat-card class="card">
+  <mat-card-header id="loginName">
+         Sign in
+  </mat-card-header>
+  <mat-card-content>
+    <div class="container">
+      <mat-form-field>
+        <input matInput placeholder="Enter your email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="container">
+      
+      <mat-form-field>
+          
+       <input matInput placeholder="Enter your password" name="password" [formControl]="password" [type]="hide ? 'password' : 'text'" required >
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error ng-if="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
+        </mat-form-field>
+           
+      </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <div id="signButton"><button mat-button (click) = "secureLogin(email.value, password.value)" >Sign In</button>
+    <button mat-button (click) = "register()" >Sign Up</button></div>
+    <div id="forgotLink"> <a routerLink="." (click) = "forgot()" >Forgot password</a></div>
+
+  </mat-card-actions>
+</mat-card>
