@@ -23,7 +23,7 @@
         </div>
         <div class="container">
             <mat-form-field>
-                <input matInput  [matDatepicker]="picker" [max]="maxDate" placeholder="Choose a date of birth" [formControl]="dob" required>
+                <input matInput  [matDatepicker]="picker" [max]="maxDate" placeholder="Choose a date of birth" name="dob" [formControl]="dob" required>
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
                 <mat-error *ngIf="dob.invalid">{{getDateErrorMessage()}}</mat-error>
@@ -44,6 +44,6 @@
         </div>
     </mat-card-content>
     <div class="button-register" fxLayoutAlign="center">
-        <button mat-button  (click) = "getValues(email.value, password.value, repeatPassword.value)">Register</button>
+        <button mat-button  (click) = "getValues(name.value, email.value, phone.value, dob.value, password.value, repeatPassword.value)">Register</button>
     </div>  
   </mat-card>

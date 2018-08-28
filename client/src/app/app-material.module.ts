@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
@@ -14,13 +13,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule, MatNativeDateModule, DateAdapter } from '@angular/material';
 
+
 @NgModule({
   imports: [
     CommonModule
   ],
   exports: [
     MatCardModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
@@ -33,7 +32,8 @@ import { MatDatepickerModule, MatNativeDateModule, DateAdapter } from '@angular/
     MatSidenavModule,
     FlexLayoutModule,
     MatDatepickerModule,
-    MatNativeDateModule,
+    MatNativeDateModule
+    
   ],
   declarations: [],
   providers: [

@@ -4,17 +4,14 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../model/user');
 var bcrypt = require('bcryptjs');
+var saltRounds = 10;
 var crypto = require('crypto');
 var async = require('async');
-var session = require('express-session')
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var flash = require('express-flash');
+
 var jwt = require('jsonwebtoken');
-
-app.use(flash());
-
 
 router.post('/register', (req, res) => {
     var newUser = new User({
@@ -65,9 +62,12 @@ router.post('/login', (req,res) => {
                     })
                 }
                 if(result){
+                    var token = jwt.sign({
+                        data: doc._id
+                      }, 'secret', { expiresIn: '24h' })
                     res.json({
                         success: true,
-                        msg: "Successfully logged in",
+                        token: token,
                         status_code: 200
                     })
                 } else {
@@ -97,7 +97,7 @@ router.post('/forgot', (req, res, next) => {
         function(done) {
             jwt.sign({
                 data: req.body.email
-              }, 'secret', { expiresIn: '1h' }, function(err, token){
+              }, 'secret', { expiresIn: '24h' }, function(err, token){
                   done(err, token);
               });
         },
@@ -113,8 +113,12 @@ router.post('/forgot', (req, res, next) => {
                 // })
             }
             if (!user) {
-                req.flash('error', 'No account with that email address exists.');
-                return res.redirect('/forgot');
+                // res.flash('error', 'No account with that email address exists.');
+                res.json({
+                    success: false,
+                    msg: "No acount with entered email address exists",
+                    success_code: 404
+                });
               }
             user.resetPasswordToken = token;
             user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
@@ -141,55 +145,79 @@ router.post('/forgot', (req, res, next) => {
               subject: 'Node.js Password Reset',
               text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                 'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                'http://localhost:4200/reset/' + token + '\n\n' +
                 'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
             smtpTransport.sendMail(mailOptions, function(err) {
-              req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+            //   res.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+            res.json({
+                success: true,
+                msg: 'An e-mail has been sent to ' + user.email + ' with further instructions.',
+                success_code: 200
+            });
               done(err, 'done');
             });
           }
     ], function(err) {
         if (err) return next(err);
-        res.redirect('/forgot');
+        //   res.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+        res.json({
+            success: false,
+            msg: "Something went wrong",
+            success_code: 500
+        });
       });
 })
 
-router.post('/reset/:token', function(req, res) {
+router.post('/reset', function(req, res) {
     async.waterfall([
       function(done) {
-        var newToken = req.params.token;
+        var newToken = req.body.token;
         jwt.verify(newToken, 'secret', function(err, decoded){
             if(err) {
                     res.json({
-                    success: false,
-                    msg: "Token expired"
-               })
+                        success: false,
+                        msg: "Token expired",
+                        status_code: 403
+                    })
             }
             console.log(decoded);
-            User.findOne({ resetPasswordToken: req.params.token }, function(err, user) {
+            User.findOne({ resetPasswordToken: req.body.token }, function(err, user) {
                 if (err){
-
+                    res.json({
+                        success: false,
+                        msg: "Something went wrong",
+                        status_code: 403
+                   })
                 }
                 if (!user) {
-                  //req.flash('error', 'Password reset token is invalid or has expired.');
-                  return res.redirect('back');
+                    res.json({
+                        success: false,
+                        msg: "User Not Found",
+                        status_code:404
+                   })
                 }
         
-                user.password = req.body.password;
+                //user.password = req.body.password;
                 user.resetPasswordToken = undefined;
+                bcrypt.genSalt(saltRounds, function(err, salt) {
+                    console.log(salt);
+                    
+                    bcrypt.hash(req.body.password, salt, function(err, hash) {
+                        // Store hash in your password DB.
+                        if(err) {
+                            return;
+                        } 
+                        user.password = hash;
+                        user.save(function(err) {
+                              done(err, user);
+                            });                    
+                        });
+                });
                 //user.resetPasswordExpires = undefined;
         
-                user.save(function(err) {
-                  //req.logIn(user, function(err) {
-                    done(err, user);
-                  });
-               // });
               });
         });
-        
-        
-
       },
       function(user, done) {
         var smtpTransport = nodemailer.createTransport( {
@@ -207,12 +235,20 @@ router.post('/reset/:token', function(req, res) {
             'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
         };
         smtpTransport.sendMail(mailOptions, function(err) {
-          req.flash('success', 'Success! Your password has been changed.');
+            res.json({
+                success: true,
+                msg: "Successfully changed password",
+                status_code: 200
+           })
           done(err);
         });
       }
     ], function(err) {
-      res.redirect('/');
+        res.json({
+            success: false,
+            msg: "Something went wrong",
+            status_code: 500
+       })
     });
   });
 

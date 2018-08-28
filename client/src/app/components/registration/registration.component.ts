@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { AppService } from '../../services/app.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -10,7 +12,7 @@ export class RegistrationComponent implements OnInit {
 
   maxDate = new Date();
 
-  constructor() { }
+  constructor(private service : AppService, private router : Router) { }
 
   ngOnInit() {
   }
@@ -74,25 +76,28 @@ export class RegistrationComponent implements OnInit {
    * @param password 
    * @param repeatPassword 
    */
-   getValues (email, password, repeatPassword){
-    console.log(email+" "+password+" "+repeatPassword);
+   getValues (name, email, phone, dob, password, repeatPassword){
+    //console.log(name+" "+email+" "+password+" "+repeatPassword);
     var user = {
+      "name":name,
       "email":email,
-      "password":password
+      "phone":phone,
+      "password":password,
+      "dob":dob
     }
     console.log(user);
     
-    // if(password == repeatPassword){
-    //   this.service.postRequest(user,'register').subscribe((data:any) => {
-    //     console.log(data);
-    //     if(data.success){
-    //       this.router.navigate(['']);
-    //     } else {
-    //       alert('Something went wrong');
-    //     }
-    //   })
-    // } else {
-    //     alert('Failed to match password ')
-    // }
+    if(password == repeatPassword){
+      this.service.postRequest(user,'register').subscribe((data:any) => {
+        console.log(data);
+        if(data.success){
+          this.router.navigate(['']);
+        } else {
+          alert('Something went wrong');
+        }
+      })
+    } else {
+        alert('Failed to match password ')
+    }
    }
 }

@@ -3,7 +3,7 @@ var bcrypt = require('bcryptjs');
 var saltRounds = 10;
 
 /**
- * Schema for user information
+ * @description Schema for user information
  */
 var UserSchema = new mongoose.Schema({
     name: {
@@ -33,11 +33,19 @@ var UserSchema = new mongoose.Schema({
 
 var User = module.exports = mongoose.model('userInfo', UserSchema);
 
+/**
+ * @description Add user object in database
+ * @param {user object} newUser 
+ * @param {*} callback 
+ */
 module.exports.addUser = (newUser, callback) => {
     save(newUser,callback);
     //newUser.save(callback);
 }
 
+/**
+ * @description Save user data
+ */
 save = (newUser, callback) => {
     bcrypt.genSalt(saltRounds, function(err, salt) {
         console.log(salt);

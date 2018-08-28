@@ -15,17 +15,23 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  hide = true; //Hide and show password
-
-  email = new FormControl('', [Validators.required, Validators.email]); // email validation
+  /**
+   * @description Hide and show password
+   */
+  hide = true; 
 
   /**
-   * Password validation
+   * @description email validation
+   */
+  email = new FormControl('', [Validators.required, Validators.email]); 
+
+  /**
+   * @description Password validation
    */
   password = new FormControl('', [Validators.required, Validators.minLength(6)]);
   
   /**
-   * Gets mail error message
+   * @description Gets mail error message
    */
   getErrorMessage() {
     return this.email.hasError('required') ?
@@ -33,14 +39,14 @@ export class LoginComponent implements OnInit {
   }
   
   /**
-   * Gets password error message
+   * @description Gets password error message
    */
   getPasswordErrorMessage() {
     return this.password.hasError('required') ? "Can't be empty" : this.password.hasError('minlength') ? 'Wrong password' : '';
   }
   
   /**
-   * Login after validating the data and checking the database whether the user exists or not
+   * @description Login after validating the data and checking the database whether the user exists or not
    * @param email 
    * @param password 
    */
@@ -51,29 +57,29 @@ export class LoginComponent implements OnInit {
     }
     console.log(user);
     
-    // this.service.postRequest(user, 'login').subscribe((data: any)  =>  {
-    //   localStorage.setItem('token', data.token);
-    //   localStorage.setItem('email', data.email);
-    //   this.usersOnline = localStorage.getItem('email');
-    //   this.data.push(this.usersOnline);
-    //   var a = (this.auth.isAuthenticated());
-    //   if (data != 'undefined') {
-    //     if (data.success) {
-           this.router.navigate(['app-home']);
-    //     } else {
-    //       alert(data.reason)
-    //     }
-    //   }
-    // });
+    this.service.postRequest(user, 'login').subscribe((data: any)  =>  {
+      localStorage.setItem('token', data.token);
+      // localStorage.setItem('email', data.email);
+      //var a = (this.auth.isAuthenticated());
+      if (data != 'undefined') {
+        if (data.success) {
+           this.router.navigate(['dashboard']);
+        } else {
+          alert(data.msg)
+        }
+      }
+    });
   }
 
 /**
- * Goes to registration page
+ * @description Navigates to registration page
  */
   register() { 
     this.router.navigate(['registration']);
   }
-
+/**
+ * @description Navigates to forgot password page
+ */
   forgot() {
     this.router.navigate(['forgot']);
   }

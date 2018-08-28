@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,7 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: AppService) { }
 
   ngOnInit() {
   }
@@ -23,7 +24,15 @@ export class ForgotPasswordComponent implements OnInit {
 
   passwordReset(email) {
     console.log(email);
-    this.isValid = true;
+    var user = {
+      "email":email
+    }
+    this.service.postRequest(user, 'forgot').subscribe((data: any) => {
+      console.log(data);
+      
+      this.isValid = true;
+    })
+    
     
   }
 }
