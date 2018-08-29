@@ -10,9 +10,13 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AppService } from './services/app.service';
+import { LayoutModule } from '@angular/cdk/layout';
+import { NotesComponent } from './components/notes/notes.component';
+import { RemindersComponent } from './components/reminders/reminders.component';
+import { ArchiveComponent } from './components/archive/archive.component';
+import { TrashComponent } from './components/trash/trash.component';
 
 @NgModule({
   declarations: [
@@ -21,16 +25,19 @@ import { AppService } from './services/app.service';
     LoginComponent,
     RegistrationComponent,
     ForgotPasswordComponent,
-    DashboardComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    NotesComponent,
+    RemindersComponent,
+    ArchiveComponent,
+    TrashComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AppMaterialModule,
     HttpClientModule,
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    LayoutModule,
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

@@ -12,6 +12,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule, MatNativeDateModule, DateAdapter } from '@angular/material';
+import { MatListModule } from '@angular/material/list';
+
 
 
 @NgModule({
@@ -32,8 +34,8 @@ import { MatDatepickerModule, MatNativeDateModule, DateAdapter } from '@angular/
     MatSidenavModule,
     FlexLayoutModule,
     MatDatepickerModule,
-    MatNativeDateModule
-    
+    MatNativeDateModule,
+    MatListModule
   ],
   declarations: [],
   providers: [

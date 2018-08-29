@@ -1,3 +1,29 @@
-<p>
-  home works!
-</p>
+<div class="container">
+  <mat-toolbar class="toolbar">
+    <button style="color:black" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <span class="app-name1">Google </span>
+    <span class="app-name2">Keep</span>
+    <div>
+      <div>
+        
+      </div>
+      <div>
+          <input class="searchBox" type="text" placeholder="search">
+      </div>
+      <div></div>
+      
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container" hasBackdrop="false">
+    <mat-sidenav #snav class="sidenav">
+      <mat-nav-list>
+        <a mat-list-item routerLink="." (click) = "notes()"><img class="icon" src="../../../assets/images/note.svg" alt=""> Notes</a>
+        <a mat-list-item routerLink="." (click) = "reminders()"><img class="icon" src="../../../assets/images/reminder.svg" >Reminders</a>
+        <a mat-list-item routerLink="." (click) = "archive()"><i class="material-icons icon">archive</i> Archive</a>
+        <a mat-list-item routerLink="." (click) = "trash()"><img class="icon" src="../../../assets/images/trash.svg" alt=""> Trash</a>
+        <!-- <a mat-list-item routerLink="." (click) = "setting()">Reminders</a> -->
+      </mat-nav-list>
+    </mat-sidenav>
+  </mat-sidenav-container>
+</div>

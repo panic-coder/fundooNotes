@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       //var a = (this.auth.isAuthenticated());
       if (data != 'undefined') {
         if (data.success) {
-           this.router.navigate(['dashboard']);
+           this.router.navigate(['home']);
         } else {
           alert(data.msg)
         }

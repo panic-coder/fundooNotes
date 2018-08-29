@@ -1,0 +1,59 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .toolbar {
+    position: fixed;
+    background-color: rgb(255, 187, 0);
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+  }
+  
+  .app-name1 {
+    font-size: 25px;
+    color: black;
+    font-weight: normal;
+    margin-left: 20px;
+    font-family: 'Roboto',arial,sans-serif;
+  }
+
+  .app-name2 {
+    font-size: 25px;
+    padding-left:5px;
+    color:black;
+  }
+  
+  .sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    /* flex: 1; */
+    margin-top:60px;
+    background-color: #fff;
+    flex: 1 0 auto;
+  }
+
+  .sidenav {
+      width: 265px
+  }
+
+  .icon {
+    opacity:0.5;
+  }
+  
+  .searchBox {
+      border: none;
+      margin-left: 20px;
+      outline: transparent;
+      width: 616px;
+      height: 46px;
+      border-radius: 5px;
+      background: transparent;
+  }
+ 
+  
