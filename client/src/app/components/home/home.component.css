@@ -1,59 +1,131 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  .toolbar {
-    position: fixed;
-    background-color: rgb(255, 187, 0);
-    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-    z-index: 2;
-  }
-  
-  .app-name1 {
-    font-size: 25px;
-    color: black;
-    font-weight: normal;
-    margin-left: 20px;
-    font-family: 'Roboto',arial,sans-serif;
-  }
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 
-  .app-name2 {
-    font-size: 25px;
-    padding-left:5px;
-    color:black;
-  }
-  
-  .sidenav-container {
-    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-    /* flex: 1; */
-    margin-top:60px;
-    background-color: #fff;
-    flex: 1 0 auto;
-  }
+.toolbar {
+  position: fixed;
+  background-color: rgb(255, 187, 0);
+  z-index: 2;
+}
 
-  .sidenav {
-      width: 265px
-  }
+.app-name1 {
+  font-size: 22px;
+  color: black;
+  font-weight: bold;
+  margin-left: 20px;
+  font-family: 'Roboto', arial, sans-serif;
+  width: 74px;
+  height: 24px;
+  padding-bottom: 10px;
+}
 
-  .icon {
-    opacity:0.5;
-  }
+.app-name2 {
+  font-size: 22px;
+  padding-left: 10px;
+  color: black;
+  width: 74px;
+  height: 24px;
+  padding-bottom: 10px;
+}
+
+.sidenav-container {
+  /* width: 265px; */
+  margin-top: 60px;
+  background-color: #fff;
+  flex: 1 0 auto;
+}
+
+.sidenav {
+  width: 265px;
   
-  .searchBox {
-      border: none;
-      margin-left: 20px;
-      outline: transparent;
-      width: 616px;
-      height: 46px;
-      border-radius: 5px;
-      background: transparent;
-  }
- 
-  
+}
+
+.icon {
+  opacity: 0.5;
+  height: 24px;
+  width: 24px;
+  padding-left: 15px;
+}
+
+.searchBox {
+  border: none;
+  margin-left: 20px;
+  outline: transparent;
+  width: 616px;
+  height: 46px;
+  border-radius: 5px;
+  background: transparent;
+}
+
+.label {
+  width: 280px;
+  height: 52px;
+  font-size: 13px;
+  padding: 15px 10px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.label1 {
+  padding-right: 30px;
+}
+
+.label2 {
+  padding-left: 100px;
+}
+
+.labelDiv {
+  padding: 18px;
+}
+
+.description {
+  padding-left: 32px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.navDiv {
+  padding-left: 24px;
+}
+
+#toolButton {
+  width: 54px;
+  height: 46px;
+}
+
+.afterSearchButton {
+  margin-left: 20px;
+  margin-top: 9px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.toolLeftDiv {
+  margin-left: 60px;
+}
+
+.toolLeftDiv button {
+  margin-right: 12px;
+  opacity: 0.5;
+}
+
+.firstDiv {
+  margin-left: 25px;
+  background: rgba(0, 0, 0, 0.04);
+  border: solid rgba(0, 0,0, 0);
+  width: 720px;
+  height: 46px;
+  text-decoration-color: black;
+  border-radius: 5px;
+}
+
+.menu {
+  color: black;
+  opacity: 0.5
+}

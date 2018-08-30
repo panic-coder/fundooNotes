@@ -9,6 +9,8 @@ export class NotesComponent implements OnInit {
 
   constructor() { }
 
+  
+
   ngOnInit() {
   }
 

@@ -1,0 +1,39 @@
+.takeNotes {
+    width: 600px;
+    height: 46px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 2px;
+    margin-top: 30px;
+}
+
+.notesTitle {
+    border: none;
+    padding: 0;
+}
+
+.icons {
+    float: right;
+    width: 40px;
+    height: 40px;
+    opacity: 0.5;
+    margin-top: -23px;
+    
+}
+
+.inputTitle {
+    width: 80%;
+    border: none;
+    outline: none;
+    margin-top: 5px;
+    font-size: 15px;
+    padding-top: 9px;
+    margin-left: 20px;
+
+  }
+
+  

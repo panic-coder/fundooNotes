@@ -1,29 +1,68 @@
-<div class="container">
+<div class="container" fxLayout>
   <mat-toolbar class="toolbar">
-    <button style="color:black" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <span class="app-name1">Google </span>
-    <span class="app-name2">Keep</span>
-    <div>
-      <div>
-        
-      </div>
-      <div>
-          <input class="searchBox" type="text" placeholder="search">
-      </div>
-      <div></div>
-      
+    <button class="menu" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <span class="app-name1">{{name1}}</span>
+    <span class="app-name2">{{name2}}</span>
+    <div class="firstDiv">
+     <button mat-button mat-icon-button >
+       <i class="material-icons">
+         search
+        </i>
+      </button>
+      <input class="searchBox" type="text" placeholder="Search">
+      <button mat-button mat-icon-button>
+      <i class="material-icons ">
+        close
+      </i>
+    </button>
+    </div>
+    <div class="afterSearchButton" style="margin-left:55px">
+        <i class="material-icons">
+            refresh
+            </i>
+    </div>
+    <div class="afterSearchButton">
+        <i class="material-icons">
+            view_stream
+            </i>
+    </div>
+    <div class="toolLeftDiv">
+      <button mat-button mat-icon-button>
+          <i class="material-icons">
+              apps
+              </i>
+      </button>
+      <button mat-button mat-icon-button>
+          <i class="material-icons">
+              notifications
+              </i>
+      </button>
+      <button mat-button mat-icon-button (click) = "signout()">
+          <i class="material-icons">
+              exit_to_app
+              </i>
+      </button>
     </div>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container" hasBackdrop="false">
     <mat-sidenav #snav class="sidenav">
       <mat-nav-list>
-        <a mat-list-item routerLink="." (click) = "notes()"><img class="icon" src="../../../assets/images/note.svg" alt=""> Notes</a>
-        <a mat-list-item routerLink="." (click) = "reminders()"><img class="icon" src="../../../assets/images/reminder.svg" >Reminders</a>
-        <a mat-list-item routerLink="." (click) = "archive()"><i class="material-icons icon">archive</i> Archive</a>
-        <a mat-list-item routerLink="." (click) = "trash()"><img class="icon" src="../../../assets/images/trash.svg" alt=""> Trash</a>
+        <a mat-list-item routerLink="." (click) = "notes()"><img class="icon" src="../../../assets/images/note.svg" alt=""><span class="description">Notes</span> </a>
+        <a mat-list-item routerLink="." (click) = "reminders()"><img class="icon" src="../../../assets/images/reminder.svg" ><span class="description">Reminders</span> </a>
+        <mat-divider></mat-divider>
+        <div class="labelDiv"><span  class="label label1">Labels</span> <span class="label label2">EDIT</span> </div>
+        <a mat-list-item routerLink="." ><i class="material-icons icon">add</i><span class="description">Create new label</span> </a>
+
+        <mat-divider></mat-divider>
+
+        <a mat-list-item routerLink="." (click) = "archive()"><i class="material-icons icon">archive</i><span class="description">Archive</span> </a>
+        <a mat-list-item routerLink="." (click) = "trash()"><img class="icon" src="../../../assets/images/trash.svg" alt=""><span class="description">Trash</span> </a>
         <!-- <a mat-list-item routerLink="." (click) = "setting()">Reminders</a> -->
       </mat-nav-list>
     </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

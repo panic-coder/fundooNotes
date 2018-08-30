@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ArchiveComponent implements OnInit {
 
   constructor() { }
-
+  name1 = "Archive";
+  name2 = ""
   ngOnInit() {
   }
 
