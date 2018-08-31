@@ -9,9 +9,13 @@ export class NotesComponent implements OnInit {
 
   constructor() { }
 
-  
+  expression = false;
 
   ngOnInit() {
+  }
+
+  newNote() {
+    this.expression = true;
   }
 
 }

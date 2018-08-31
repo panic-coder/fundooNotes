@@ -1,31 +1,56 @@
 .takeNotes {
-    width: 600px;
-    height: 46px;
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    padding: 2px;
-    margin-top: 30px;
+  width: 600px;
+  height: 46px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 2px;
+  margin-top: 30px;
 }
 
 .notesTitle {
-    border: none;
-    padding: 0;
+  border: none;
+  padding: 0;
 }
 
 .icons {
-    float: right;
-    width: 40px;
-    height: 40px;
-    opacity: 0.5;
-    margin-top: -23px;
-    
+  float: right;
+  width: 40px;
+  height: 40px;
+  opacity: 0.5;
+  margin-top: -23px;
 }
 
 .inputTitle {
+  width: 80%;
+  border: none;
+  outline: none;
+  margin-top: 5px;
+  font-size: 15px;
+  padding-top: 9px;
+  margin-left: 20px;
+}
+
+.hiddentakeNotes {
+  width: 580px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.pinIcon {
+    float: right;
+    opacity: 0.5;
+}
+/* .hiddentakeNotes {
     width: 80%;
     border: none;
     outline: none;
@@ -33,7 +58,48 @@
     font-size: 15px;
     padding-top: 9px;
     margin-left: 20px;
+    /* margin-top: 0px; */
 
-  }
 
-  
+.inputTitleNote {
+    border: none;
+    outline: none;
+    width: 80%;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.hiddenDiv {
+    padding: 10px;
+}
+
+.inputNote {
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-size: 14px;
+}
+
+.iconsDiv {
+    padding-left: 10px;
+    padding-top: 16px;
+    height: 46px;
+}
+
+.iconsLastDiv {
+    /* height: 24px;
+    width: 24px; */
+}
+
+.innerIconDiv {
+    height: 24px;
+    width: 24px;
+    padding: 5px;
+    padding-right: 14px;
+    opacity: 0.5;
+}
+
+.closeButton {
+    float: right;
+}

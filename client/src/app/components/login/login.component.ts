@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       //var a = (this.auth.isAuthenticated());
       if (data != 'undefined') {
         if (data.success) {
-           this.router.navigate(['home']);
+           this.router.navigate(['home/notes']);
         } else {
           alert(data.msg)
         }
@@ -77,6 +77,7 @@ export class LoginComponent implements OnInit {
   register() { 
     this.router.navigate(['registration']);
   }
+  
 /**
  * @description Navigates to forgot password page
  */
