@@ -32,18 +32,21 @@
   font-size: 15px;
   padding-top: 9px;
   margin-left: 20px;
+  
 }
 
 .hiddentakeNotes {
   width: 580px;
-  height: auto;
-  position: absolute;
+  /* height: 133px; */
+  /* position: absolute; */
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
-  margin-top: 30px;
+  margin-top: -50px;
+  padding: 5px;
+  
 }
 
 .pinIcon {
@@ -103,3 +106,8 @@
 .closeButton {
     float: right;
 }
+
+div[contenteditable=true]:empty::before {
+    content: attr(placeholder);
+    opacity: 0.5;;
+    }

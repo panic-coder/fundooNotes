@@ -13,6 +13,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDatepickerModule, MatNativeDateModule, DateAdapter } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 
 
@@ -35,7 +37,8 @@ import { MatListModule } from '@angular/material/list';
     FlexLayoutModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule
   ],
   declarations: [],
   providers: [

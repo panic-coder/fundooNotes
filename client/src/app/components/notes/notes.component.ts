@@ -9,6 +9,7 @@ export class NotesComponent implements OnInit {
 
   constructor() { }
 
+  enterExpression = true;
   expression = false;
 
   ngOnInit() {
@@ -16,6 +17,12 @@ export class NotesComponent implements OnInit {
 
   newNote() {
     this.expression = true;
+    this.enterExpression = false;
+  }
+
+  closeNote() {
+    this.expression = false;
+    this.enterExpression = true;
   }
 
 }

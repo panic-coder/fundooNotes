@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @Component({
   selector: 'home',
@@ -10,7 +12,20 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router) { }
 
+  raw_data
+  firstCharacter = '';
+  name = ''
+  email = ''
+  sign = false;
+
   ngOnInit() {
+    const helper = new JwtHelperService();
+
+    const decodedToken = helper.decodeToken(localStorage.getItem('token'));
+    this.raw_data = decodedToken;
+    localStorage.setItem('name',this.raw_data.name);
+    var user = localStorage.getItem('name');
+    this.firstCharacter = user[0];
   }
 
   name1 = "Google"
@@ -20,6 +35,8 @@ export class HomeComponent implements OnInit {
     this.name1 = "Google"
     this.name2 = "Keep"
     this.router.navigate(['home/notes']);
+    console.log(this.raw_data);
+    
   }
 
   reminders() {
@@ -42,7 +59,22 @@ export class HomeComponent implements OnInit {
 
   signout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('name')
     this.router.navigate(['']);
   }
 
+  signoutCard() {
+    if(this.sign){
+      this.sign = false;
+    } else {
+      this.sign = true;
+    }
+    
+    this.name =  this.raw_data.name;
+    this.email = this.raw_data.email;
+  }
+
+  appClick() {
+    
+  }
 }

@@ -1,59 +1,53 @@
-
-<mat-card class="takeNotes">
-      <mat-card-title class="notesTitle">
-        <div>
-            <span><input (click)="newNote()" class="inputTitle" placeholder="Take a note..."></span>  
-            <div >
-                <i class="material-icons icons">
-                    image
-                    </i>
-                <i class="material-icons icons">
-                  list
-                  </i>
-            </div>
-        </div>
-      </mat-card-title>
+<div  style="margin-top: 100px;height: 100%;">
+<mat-card *ngIf="enterExpression" class="takeNotes">
+  <mat-card-title class="notesTitle">
+    <div>
+      <span><input (click)="newNote()" class="inputTitle" placeholder="Take a note..."></span>
+      <div>
+        <i class="material-icons icons">
+          image
+        </i>
+        <i class="material-icons icons">
+          list
+        </i>
+      </div>
+    </div>
+  </mat-card-title>
 </mat-card>
-
 <mat-card *ngIf="expression" class="hiddentakeNotes">
   <div class="hiddenDiv">
-
     <span>
-      <!-- <textarea class="inputTitleNote" type="text" placeholder="Title" name="" id="" cols="30" rows="10"></textarea> -->
       <!-- <input class="inputTitleNote" type="text" placeholder="Title"> -->
-      <!-- <content-editable class="inputTitleNote" type="text" placeholder="Title"></content-editable> -->
+      <div class="inputTitleNote" contenteditable="true" placeholder="Title">
+        </div>
     </span>
     <span><img class="pinIcon" src="../../../assets/images/pin.svg" alt=""></span>
   </div>
-  <div>
-    <input class="inputNote" type="text" placeholder="Take a note">
+  <div class="inputNote" contenteditable="true" placeholder="Take a note">
   </div>
   <div class="iconsDiv">
-        <i class="material-icons innerIconDiv">
-            person_add
-            </i>
-        <i class="material-icons innerIconDiv">
-            color_lens
-            </i>
-        <i class="material-icons innerIconDiv">
-            photo 
-        </i>
-        <i class="material-icons innerIconDiv">
-            archive
-        </i>
-        <i class="material-icons innerIconDiv">
-            more_vert
-        </i>
-        <i class="material-icons innerIconDiv">
-            undo
-        </i>
-        <i class="material-icons innerIconDiv">
-            redo
-        </i>
-        <button mat-button class="closeButton">CLOSE</button>
-            
-            
-      
-      
+    <i class="material-icons innerIconDiv">
+      person_add
+    </i>
+    <i class="material-icons innerIconDiv">
+      color_lens
+    </i>
+    <i class="material-icons innerIconDiv">
+      photo
+    </i>
+    <i class="material-icons innerIconDiv">
+      archive
+    </i>
+    <i class="material-icons innerIconDiv">
+      more_vert
+    </i>
+    <i class="material-icons innerIconDiv">
+      undo
+    </i>
+    <i class="material-icons innerIconDiv">
+      redo
+    </i>
+    <button mat-button class="closeButton" (click)="closeNote()">CLOSE</button>
   </div>
 </mat-card>
+</div>

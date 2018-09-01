@@ -63,7 +63,9 @@ router.post('/login', (req,res) => {
                 }
                 if(result){
                     var token = jwt.sign({
-                        data: doc._id
+                        data: doc._id,
+                        name: doc.name,
+                        email: doc.email
                       }, 'secret', { expiresIn: '24h' })
                     res.json({
                         success: true,

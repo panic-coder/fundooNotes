@@ -1,4 +1,4 @@
-<div class="container" fxLayout>
+<div class="container" >
   <mat-toolbar class="toolbar">
     <button class="menu" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <span class="app-name1">{{name1}}</span>
@@ -26,24 +26,65 @@
             view_stream
             </i>
     </div>
-    <div class="toolLeftDiv">
-      <button mat-button mat-icon-button>
-          <i class="material-icons">
-              apps
-              </i>
-      </button>
-      <button mat-button mat-icon-button>
-          <i class="material-icons">
-              notifications
-              </i>
-      </button>
-      <button mat-button mat-icon-button (click) = "signout()">
-          <i class="material-icons">
-              exit_to_app
-              </i>
-      </button>
-    </div>
+    <div class="toolLeftDiv" >
+        <!-- <a href="www.google.co.in"> -->
+          <button mat-button mat-icon-button >  
+                <i class="material-icons ">
+                    apps
+                    </i>
+              
+          </button>
+        <!-- </a> -->
+          <button mat-button mat-icon-button>
+                <i class="material-icons">
+                    notifications
+                    </i>
+              
+          </button>
+        </div>
+<div class="leftButton">
+    <button mat-button mat-icon-button (click) = "signoutCard()">
+        <!-- <i class="material-icons">
+            exit_to_app
+            </i> -->
+            <div class="signoutDiv">{{firstCharacter}}</div>
+            <!-- <i class="material-icons">
+                panorama_fish_eye
+                </i> -->
+    </button>
+    <!-- <mat-card *ngIf="sign" class="signout">
+        <div>
+          <div>
+            
+          </div>
+          <div></div>
+          <div></div>
+        </div>
+        </mat-card> -->
+        
+</div>
+<mat-card *ngIf="sign" (click)="signoutCard()" class="signout">
+  
+  <div class="signOuterDiv">
+        <div class="imageDiv"><p class="imgBig">{{firstCharacter}}</p></div>
+        <div class="nameEmail">
+        <div class="username">
+            {{name}}
+          </div>
+          <div class="useremail">
+            {{email}}
+          </div>
+          <div>
+              <button class="signoutButton" mat-raised-button  (click)="signout()">signout</button>
+            </div>
+        </div>  
+  </div>
+   
+    
+  </mat-card>
+     
   </mat-toolbar>
+ 
 
   <mat-sidenav-container class="sidenav-container" hasBackdrop="false">
     <mat-sidenav #snav class="sidenav">
@@ -66,3 +107,4 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+
