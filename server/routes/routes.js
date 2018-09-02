@@ -49,41 +49,46 @@ router.post('/login', (req,res) => {
                 status_code: 404
             })
         }
-        console.log("In  "+req.body.password);
-        console.log("db  "+doc.password);
-        
-        try{
-            bcrypt.compare(req.body.password, doc.password, (err, result) => {
-                if(err){
-                    res.json({
-                        success: false,
-                        msg: "Something went wrong",
-                        status_code: 500
-                    })
-                }
-                if(result){
-                    var token = jwt.sign({
-                        data: doc._id,
-                        name: doc.name,
-                        email: doc.email
-                      }, 'secret', { expiresIn: '24h' })
-                    res.json({
-                        success: true,
-                        token: token,
-                        status_code: 200
-                    })
-                } else {
-                    res.json({
-                        success: false,
-                        msg: "Something went wrong",
-                        status_code: 500
-                    })
-                } 
-            })
-        } catch (Exception){
-            console.log(Exception);
+        if(doc == null){
+            res.json({
+            success: false,
+            msg: "Not a registered user",
+            status_code: 404
+        })
         }
-    })
+        if(doc!=null)
+            try{
+                bcrypt.compare(req.body.password, doc.password, (err, result) => {
+                    if(err){
+                        res.json({
+                            success: false,
+                            msg: "Wrong password",
+                            status_code: 403
+                        })
+                    }
+                    if(result){
+                        var token = jwt.sign({
+                            data: doc._id,
+                            name: doc.name,
+                            email: doc.email
+                          }, 'secret', { expiresIn: '24h' })
+                        res.json({
+                            success: true,
+                            token: token,
+                            status_code: 200
+                        })
+                    } else {
+                        res.json({
+                            success: false,
+                            msg: "Something went wrong",
+                            status_code: 500
+                        })
+                    } 
+                })
+            } catch (Exception){
+                console.log(Exception);
+            }
+        })
 })
 
 router.post('/forgot', (req, res, next) => {

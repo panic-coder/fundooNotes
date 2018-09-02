@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
 
   signout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('name')
+    localStorage.removeItem('name');
     this.router.navigate(['']);
   }
 
