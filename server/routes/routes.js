@@ -1,15 +1,16 @@
 var express = require('express');
-var app = express();
+// var app = express();
 var router = express.Router();
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 var User = require('../model/user');
 var bcrypt = require('bcryptjs');
 var saltRounds = 10;
-var crypto = require('crypto');
+// var crypto = require('crypto');
 var async = require('async');
 var nodemailer = require('nodemailer');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+// var passport = require('passport');
+// var LocalStrategy = require('passport-local').Strategy;
+var Note = require('../model/note');
 
 var jwt = require('jsonwebtoken');
 
@@ -134,6 +135,7 @@ router.post('/forgot', (req, res, next) => {
             
             user.save(function(err) {
                 if(err) throw err;
+                err = new Error('invalid data');
                 done(err, token, user);
             });
             })
@@ -258,5 +260,85 @@ router.post('/reset', function(req, res) {
        })
     });
   });
+
+  router.post('/savenote', function(req, res) {
+      console.log(req.body);
+      var newNote = new Note(req.body)
+      Note.createNote(newNote, (err) => {
+          if(err){
+              res.json({
+                  success: false,
+                  msg: "Something went wrong",
+                  status_code: 500
+              })
+          } else {
+              res.json({
+                  success: true,
+                  msg: "Note saved successfully",
+                  status_code: 200
+              })
+          }
+      });
+      
+  })
+
+  router.put('/updatenote/:id', function(req, res) {
+    Note.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, note) => {
+        console.log(req.body);
+         console.log(req.params.id);
+
+        if(err){
+            res.json({
+                success: false,
+                msg: "Something went wrong",
+                status_code: 500
+            })
+        }
+        console.log(note);
+        
+        res.json({
+            success: true,
+            msg: "Successfully updated",
+            data: note,
+            status_code: 200
+        })
+    })
+  })
+
+  router.delete('/deletenote/:id', function(req, res) {
+      Note.findByIdAndRemove(req.params.id, (err, note) => {
+          if(err){
+              res.json({
+                  success: false,
+                  msg: "Something went wrong",
+                  status_code: 500
+              })
+          }
+          res.json({
+              success: true,
+              msg: "Successfully deleted",
+              data: note,
+              status_code: 200
+          })
+      })
+  })
+
+  router.get('/readnote/:note_id', function(req, res) {
+      Note.find({"noteId": req.params.note_id}, (err, notes) => {
+          if(err){
+            res.json({
+                success: false,
+                msg: "Something went wrong",
+                status_code: 500
+            })
+          }
+          res.json({
+              success: true,
+              msg: "Successfully taken data from db",
+              data: notes,
+              status_code: 200
+          })
+      })
+  })
 
 module.exports = router; //Getting all the routes available in exports module
