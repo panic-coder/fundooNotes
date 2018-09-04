@@ -16,4 +16,10 @@ export class AppService {
     var requestHeader = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post(this.link+url, user, { headers: requestHeader });
   }
+
+  getRequest(url){
+    var id = localStorage.getItem('id')
+    // var requestHeader = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.get(this.link+url+'/'+id);
+  }
 }

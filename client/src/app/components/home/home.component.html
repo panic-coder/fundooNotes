@@ -1,6 +1,6 @@
 <div class="container" >
   <mat-toolbar class="toolbar">
-    <button class="menu" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <button class="menu" mat-icon-button (click)="snav.toggle()" (click)="shift()"><mat-icon>menu</mat-icon></button>
     <span class="app-name1">{{name1}}</span>
     <span class="app-name2">{{name2}}</span>
     <div class="firstDiv">
@@ -102,9 +102,12 @@
         <!-- <a mat-list-item routerLink="." (click) = "setting()">Reminders</a> -->
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
-      <router-outlet></router-outlet>
+    <mat-sidenav-content [ngClass]="{'transition':shiftDiv}" *ngIf="shiftDiv">
+      <router-outlet id="smooth"></router-outlet>
     </mat-sidenav-content>
+  <mat-sidenav-content [ngClass]="{'noTransition':!shiftDiv}" *ngIf="!shiftDiv">
+    <router-outlet id="smooth"></router-outlet>
+  </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
 

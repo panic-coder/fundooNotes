@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-notes',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: AppService) { }
 
   enterExpression = true;
   expression = false;
@@ -20,9 +21,22 @@ export class NotesComponent implements OnInit {
     this.enterExpression = false;
   }
 
-  closeNote() {
+  closeNote(t,d) {
+    if(t.innerHTML != '') {
+      console.log(t.innerHTML);
+      console.log(d.innerHTML);
+    }
+    var userId = localStorage.getItem('id');
+    var note = {
+      "userId": userId,
+      "title": t.innerHTML,
+      "description": d.innerHTML
+    }
     this.expression = false;
     this.enterExpression = true;
+    this.service.postRequest(note, 'savenote').subscribe((data: any) => {
+      console.log(data);
+    });
   }
 
 }

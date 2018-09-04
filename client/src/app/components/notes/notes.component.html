@@ -1,4 +1,5 @@
-<div  style="margin-top: 100px;height: 100%;">
+<div fxFlex fxLayout="column" style="margin-top: 10vh;height: 100%;">
+  <div>
 <mat-card *ngIf="enterExpression" class="takeNotes">
   <mat-card-title class="notesTitle">
     <div>
@@ -17,40 +18,26 @@
 <mat-card *ngIf="expression" class="hiddentakeNotes">
   <div class="hiddenDiv">
     <span>
-      <!-- <input class="inputTitleNote" type="text" placeholder="Title"> -->
-      <div class="inputTitleNote" contenteditable="true" placeholder="Title">
+      <div class="inputTitleNote" contenteditable="true" placeholder="Title" #t >
         </div>
     </span>
     <span><img class="pinIcon" src="../../../assets/images/pin.svg" alt=""></span>
   </div>
-  <div class="inputNote" contenteditable="true" placeholder="Take a note">
+  <div class="inputNote" contenteditable="true" placeholder="Take a note" #d>
   </div>
   <div class="iconsDiv">
-   <i class="material-icons innerIconDiv">
-      touch_app
-    </i>
-    <i class="material-icons innerIconDiv">
-      person_add
-    </i>
-    <i class="material-icons innerIconDiv">
-      color_lens
-    </i>
-    <i class="material-icons innerIconDiv">
-      photo
-    </i>
-    <i class="material-icons innerIconDiv">
-      archive
-    </i>
-    <i class="material-icons innerIconDiv">
-      more_vert
-    </i>
-    <i class="material-icons innerIconDiv">
-      undo
-    </i>
-    <i class="material-icons innerIconDiv">
-      redo
-    </i>
-    <button mat-button class="closeButton" (click)="closeNote()">CLOSE</button>
+    <app-icons></app-icons>
+    <button mat-button class="closeButton" (click)="closeNote(t, d)">CLOSE</button>
   </div>
 </mat-card>
 </div>
+<div fxLayout="space-around" fxLayoutGap.xs="0" fxLayout.xs="column" fxLayoutGap="20px" fxLayout.gt-xs="row wrap" fxLayout="row wrap" class="noteCards">
+  <app-note-card></app-note-card>
+  <app-note-card></app-note-card>
+  <app-note-card></app-note-card>
+  <app-note-card></app-note-card>
+  <app-note-card></app-note-card>
+</div>
+</div>
+
+

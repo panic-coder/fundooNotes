@@ -1,3 +1,7 @@
-<mat-card>
-  
+<mat-card *ngFor="let data of noteData" class="card" fxLayout="column">
+  <div></div>
+  <div>Title {{data.title}}</div>
+  <div>Description</div>
+  <div>Label</div>
+  <div>Icon Operations</div>
 </mat-card>

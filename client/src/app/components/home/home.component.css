@@ -211,3 +211,14 @@
   opacity: 0.7;
 }
 
+.transition {
+  margin-left: 80px;
+}
+
+.noTransition {
+  margin-left: 0px;
+}
+
+#smooth {
+  transition: all 5s linear;
+}

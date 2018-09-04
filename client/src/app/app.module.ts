@@ -20,6 +20,7 @@ import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NoteCardComponent } from './components/note-card/note-card.component';
+import { IconsComponent } from './components/icons/icons.component'
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -38,6 +39,7 @@ export function tokenGetter() {
     ArchiveComponent,
     TrashComponent,
     NoteCardComponent,
+    IconsComponent,
   ],
   imports: [
     BrowserModule,

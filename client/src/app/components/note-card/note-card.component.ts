@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-note-card',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoteCardComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private service: AppService) { }
+  noteData;
   ngOnInit() {
+    this.service.getRequest('readnote').subscribe((data: any) => {
+      console.log(data);
+      console.log(data.data);
+      
+      this.noteData = data.data;
+    })
   }
 
 }

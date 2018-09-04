@@ -1,7 +1,7 @@
 var express = require('express');
 // var app = express();
 var router = express.Router();
-// var mongoose = require('mongoose');
+var mongoose = require('mongoose');
 var User = require('../model/user');
 var bcrypt = require('bcryptjs');
 var saltRounds = 10;
@@ -324,7 +324,8 @@ router.post('/reset', function(req, res) {
   })
 
   router.get('/readnote/:note_id', function(req, res) {
-      Note.find({"noteId": req.params.note_id}, (err, notes) => {
+    var id = mongoose.Types.ObjectId(req.params.note_id);
+      Note.find({"userId": id}, (err, notes) => {
           if(err){
             res.json({
                 success: false,

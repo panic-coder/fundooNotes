@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   name = ''
   email = ''
   sign = false;
+  shiftDiv = false;
 
   ngOnInit() {
     const helper = new JwtHelperService();
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
     const decodedToken = helper.decodeToken(localStorage.getItem('token'));
     this.raw_data = decodedToken;
     localStorage.setItem('name',this.raw_data.name);
+    localStorage.setItem('id',this.raw_data.data);
     var user = localStorage.getItem('name');
     this.firstCharacter = user[0];
   }
@@ -75,6 +77,16 @@ export class HomeComponent implements OnInit {
   }
 
   appClick() {
+    
+  }
+
+  shift(){
+    if(this.shiftDiv){
+      this.shiftDiv = false;
+    } else {
+      this.shiftDiv = true;
+    }
+    // console.log(this.shiftDiv);
     
   }
 }
