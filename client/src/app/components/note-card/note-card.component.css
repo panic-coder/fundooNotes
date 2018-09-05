@@ -5,3 +5,15 @@
     margin: 8px;
     /* margin-left: 200px; */
 }
+
+#icon {
+    height:30px;
+}
+
+.innerIconDiv {
+    height: 24px;
+    width: 24px;
+    padding: 2px;
+    padding-right: 14px;
+    opacity: 0.5;
+}

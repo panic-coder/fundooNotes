@@ -1,43 +1,56 @@
 <div fxFlex fxLayout="column" style="margin-top: 10vh;height: 100%;">
   <div>
-<mat-card *ngIf="enterExpression" class="takeNotes">
-  <mat-card-title class="notesTitle">
-    <div>
-      <span><input (click)="newNote()" class="inputTitle" placeholder="Take a note..."></span>
-      <div>
-        <i class="material-icons icons">
-          image
-        </i>
-        <i class="material-icons icons">
-          list
-        </i>
-      </div>
-    </div>
-  </mat-card-title>
-</mat-card>
-<mat-card *ngIf="expression" class="hiddentakeNotes">
-  <div class="hiddenDiv">
-    <span>
-      <div class="inputTitleNote" contenteditable="true" placeholder="Title" #t >
+    <mat-card *ngIf="enterExpression" class="takeNotes">
+      <mat-card-title class="notesTitle">
+        <div>
+          <span><input (click)="newNote()" class="inputTitle" placeholder="Take a note..."></span>
+          <div>
+            <i class="material-icons icons">
+              image
+            </i>
+            <i class="material-icons icons">
+              list
+            </i>
+          </div>
         </div>
-    </span>
-    <span><img class="pinIcon" src="../../../assets/images/pin.svg" alt=""></span>
+      </mat-card-title>
+    </mat-card>
+    <mat-card *ngIf="expression" class="hiddentakeNotes">
+      <div class="hiddenDiv">
+        <span>
+          <div class="inputTitleNote" contenteditable="true" placeholder="Title" #title>
+          </div>
+        </span>
+        <span><img class="pinIcon" src="../../../assets/images/pin.svg" alt=""></span>
+      </div>
+      <div class="inputNote" contenteditable="true" placeholder="Take a note" #description>
+      </div>
+      <div class="iconsDiv">
+          <i class="material-icons innerIconDiv" (click)="addReminder()">
+              touch_app
+            </i>
+            <i class="material-icons innerIconDiv" (click)="addCollaborater()">
+              person_add
+            </i>
+            <i class="material-icons innerIconDiv" (click)="addColor()">
+              color_lens
+            </i>
+            <i class="material-icons innerIconDiv" (click)="addPhoto()">
+              photo
+            </i>
+            <i class="material-icons innerIconDiv" (click)="addArchive()">
+              archive
+            </i>
+            <i class="material-icons innerIconDiv" (click)="addMore()">
+              more_vert
+            </i>
+        <button mat-button class="closeButton" (click)="update(title,description)">CLOSE</button>
+      </div>
+    </mat-card>
   </div>
-  <div class="inputNote" contenteditable="true" placeholder="Take a note" #d>
-  </div>
-  <div class="iconsDiv">
-    <app-icons></app-icons>
-    <button mat-button class="closeButton" (click)="closeNote(t, d)">CLOSE</button>
-  </div>
-</mat-card>
-</div>
-<div fxLayout="space-around" fxLayoutGap.xs="0" fxLayout.xs="column" fxLayoutGap="20px" fxLayout.gt-xs="row wrap" fxLayout="row wrap" class="noteCards">
-  <app-note-card></app-note-card>
-  <app-note-card></app-note-card>
-  <app-note-card></app-note-card>
-  <app-note-card></app-note-card>
-  <app-note-card></app-note-card>
-</div>
-</div>
+  <div fxLayout="space-around" fxLayoutGap.xs="0" fxLayout.xs="column" fxLayoutGap="20px" fxLayout.gt-xs="row wrap"
+    fxLayout="row wrap" class="noteCards">
+    <app-note-card [notes]="notes"></app-note-card>
 
-
+  </div>
+</div>

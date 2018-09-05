@@ -1,7 +1,28 @@
-<mat-card *ngFor="let data of noteData" class="card" fxLayout="column">
-  <div></div>
-  <div>Title {{data.title}}</div>
-  <div>Description</div>
-  <div>Label</div>
-  <div>Icon Operations</div>
-</mat-card>
+<div fxLayout="row wrap">
+  <mat-card *ngFor="let data of notes" class="card" (mouseover)="hoverFunction(data.title)">
+    <div (mouseover)="hoverFunction(data.title)"></div>
+    <div (mouseover)="hoverFunction(data.title)">Title {{data.title}}</div>
+    <div (mouseover)="hoverFunction(data.title)">Description</div>
+    <div (mouseover)="hoverFunction(data.title)">Label</div>
+    <div style="height: 20px;" class="icon" *ngIf="hover && data.title == current" >
+     <i class="material-icons innerIconDiv" (click)="addReminder()">
+        touch_app
+      </i>
+      <i class="material-icons innerIconDiv" (click)="addCollaborater()">
+        person_add
+      </i>
+      <i class="material-icons innerIconDiv" (click)="addColor()">
+        color_lens
+      </i>
+      <i class="material-icons innerIconDiv" (click)="addPhoto()">
+        photo
+      </i>
+      <i class="material-icons innerIconDiv" (click)="addArchive()">
+        archive
+      </i>
+      <i class="material-icons innerIconDiv" (click)="addMore(data)">
+        more_vert
+      </i>
+    </div>
+  </mat-card>
+</div>
