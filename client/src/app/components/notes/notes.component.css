@@ -115,8 +115,8 @@ div[contenteditable=true]:empty::before {
 .noteCards {
     /* width: 800px; */
     margin-top: 30px;
-    margin-left: 280px;
-    margin-right: 100px;
+    margin-left: 200px;
+    margin-right: 40px;
     /* padding-left: 200px; */
     /* padding-right: 200px; */
     /* width: 900px; */

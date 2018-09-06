@@ -1,17 +1,25 @@
-<div fxLayout="row wrap">
-  <mat-card *ngFor="let data of notes" class="card" (mouseover)="hoverFunction(data.title)">
-    <div (mouseover)="hoverFunction(data.title)"></div>
-    <div (mouseover)="hoverFunction(data.title)">Title {{data.title}}</div>
-    <div (mouseover)="hoverFunction(data.title)">Description</div>
-    <div (mouseover)="hoverFunction(data.title)">Label</div>
-    <div style="height: 20px;" class="icon" *ngIf="hover && data.title == current" >
-     <i class="material-icons innerIconDiv" (click)="addReminder()">
+<!-- <div fxLayout="row"> -->
+<mat-card class="card" (mouseover)="hover=true" (mouseleave)="hover=false">
+  <!-- <div (mouseover)="hoverFunction(data.title)"></div> -->
+  <div (mouseover)="hover=true" (mouseleave)="hover=false">Title {{data.title}}
+  </div>
+  <div (mouseover)="hover=true" (mouseleave)="hover=false">{{data.description}}</div>
+  <div (mouseover)="hover=true" (mouseleave)="hover=false">Label</div>
+  <div class="icon" (mouseover)="hover=true" (mouseleave)="hover=false">
+    <!-- <div> -->
+        <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+        <mat-menu #menu="matMenu" style="position: absolute">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu> -->
+    <div>
+      <i class="material-icons innerIconDiv" (click)="addReminder()">
         touch_app
       </i>
       <i class="material-icons innerIconDiv" (click)="addCollaborater()">
         person_add
       </i>
-      <i class="material-icons innerIconDiv" (click)="addColor()">
+      <i class="material-icons innerIconDiv" (click)="addColor(data)">
         color_lens
       </i>
       <i class="material-icons innerIconDiv" (click)="addPhoto()">
@@ -20,9 +28,16 @@
       <i class="material-icons innerIconDiv" (click)="addArchive()">
         archive
       </i>
-      <i class="material-icons innerIconDiv" (click)="addMore(data)">
-        more_vert
-      </i>
+      <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button> -->
+      <mat-icon class="innerIconDiv" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+      <mat-menu #menu="matMenu" style="position: absolute">
+        <!-- <div style="margin-bottom:10px;"> -->
+        <button mat-menu-item (click)="trash(data)">Delete</button>
+        <button mat-menu-item>Add label</button>
+      <!-- </div> -->
+      </mat-menu>
+    
     </div>
-  </mat-card>
-</div>
+  </div>
+</mat-card>
+<!-- </div> -->

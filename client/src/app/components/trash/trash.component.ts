@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../../services/app.service';
 
 @Component({
   selector: 'app-trash',
@@ -6,8 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trash.component.css']
 })
 export class TrashComponent implements OnInit {
-
-  constructor() { }
+notes = []
+  constructor(private service: AppService) {
+    this.service.getRequest('readnote').subscribe((data: any) => {
+      data.data.forEach(element => {
+        if(element.isTrash == true){
+          this.notes.push(element);
+        }
+      });
+    }) 
+   }
 
   ngOnInit() {
   }

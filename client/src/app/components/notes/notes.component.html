@@ -15,6 +15,11 @@
         </div>
       </mat-card-title>
     </mat-card>
+    <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Item 1</button>
+        <button mat-menu-item>Item 2</button>
+      </mat-menu> -->
     <mat-card *ngIf="expression" class="hiddentakeNotes">
       <div class="hiddenDiv">
         <span>
@@ -47,10 +52,11 @@
         <button mat-button class="closeButton" (click)="update(title,description)">CLOSE</button>
       </div>
     </mat-card>
+
   </div>
   <div fxLayout="space-around" fxLayoutGap.xs="0" fxLayout.xs="column" fxLayoutGap="20px" fxLayout.gt-xs="row wrap"
     fxLayout="row wrap" class="noteCards">
-    <app-note-card [notes]="notes"></app-note-card>
+    <app-note-card [data]="data" *ngFor="let data of notes" ></app-note-card>
 
   </div>
 </div>

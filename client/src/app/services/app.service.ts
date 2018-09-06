@@ -22,4 +22,13 @@ export class AppService {
     // var requestHeader = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.get(this.link+url+'/'+id);
   }
+
+  deleteRequest(url, noteId) {
+    return this.http.delete(this.link+url+'/'+noteId);
+  }
+
+  updateRequest(url, noteId, note) {
+    var requestHeader = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.put(this.link+url+'/'+noteId, note , { headers: requestHeader});
+  }
 }

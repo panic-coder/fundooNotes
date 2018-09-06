@@ -1,0 +1,24 @@
+
+.icon {
+    height:20px;
+}
+
+.trashDiv {
+    margin-top: 100px;
+    margin-left: 200px;
+}
+
+.card {
+    width: 240px;
+    position: relative;
+    margin: 8px;
+}
+
+.innerIconDiv {
+    height: 24px;
+    width: 24px;
+    padding: 5px;
+    padding-right: 14px;
+    opacity: 0.5;
+    float:right
+}

@@ -6,8 +6,8 @@
     /* margin-left: 200px; */
 }
 
-#icon {
-    height:30px;
+.icon {
+    height:20px;
 }
 
 .innerIconDiv {
@@ -16,4 +16,5 @@
     padding: 2px;
     padding-right: 14px;
     opacity: 0.5;
+    /* position: absolute; */
 }
