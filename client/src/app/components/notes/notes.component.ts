@@ -11,43 +11,22 @@ import { AppService } from '../../services/app.service';
 export class NotesComponent implements OnInit {
 
   notes = [];
-  constructor(private service: AppService) { 
-    // this.notes = [];
-    // console.log('constructor');
-    // this.service.getRequest('readnote').subscribe((data: any) => {
-    //   // console.log(data.data);
-    //   data.data.forEach(element => {
-    //     if(element.isTrash == false)
-    //       this.notes.push(element);
-    //   });
-    //   console.log(this.notes);
-      
-    //   // this.notes = data.data;
-    // });
-  }
-
   enterExpression = true;
   expression = false;
   value;
+  constructor(private service: AppService) { }
+
 
   ngOnInit() {
     this.notes = [];
     this.service.getRequest('readnote').subscribe((data: any) => {
       // console.log(data.data);
       data.data.forEach(element => {
-        if(element.isTrash == false)
+        if(element.isTrash == false && element.isArchive == false)
           this.notes.push(element);
       });
       console.log(this.notes);
-      
-      // this.notes = data.data;
     });
-    
-  }
-
-  ngAfterViewInit() {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
     
   }
 
@@ -98,7 +77,7 @@ export class NotesComponent implements OnInit {
     this.service.getRequest('readnote').subscribe((data: any) => {
       // console.log(data.data);
       data.data.forEach(element => {
-        if(element.isTrash == false)
+        if(element.isTrash == false && element.isArchive == false)
           this.notes.push(element);
       });
       console.log(this.notes);

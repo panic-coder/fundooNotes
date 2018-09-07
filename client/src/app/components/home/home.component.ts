@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
   trash() {
     this.name1 = "Trash"
     this.name2 = ""
-    this.router.navigate(['home/trash']);
+    this.router.navigate(['home','trash']);
   }
 
   signout() {

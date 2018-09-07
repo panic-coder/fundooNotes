@@ -102,11 +102,13 @@
         <!-- <a mat-list-item routerLink="." (click) = "setting()">Reminders</a> -->
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content [ngClass]="{'transition':shiftDiv}" *ngIf="shiftDiv">
-      <router-outlet id="smooth"></router-outlet>
-    </mat-sidenav-content>
-  <mat-sidenav-content [ngClass]="{'noTransition':!shiftDiv}" *ngIf="!shiftDiv">
-    <router-outlet id="smooth"></router-outlet>
+    <!-- <mat-sidenav-content [ngClass]="{'transition':shiftDiv}" *ngIf="shiftDiv">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content> -->
+  <mat-sidenav-content>
+    <!-- <router-outlet [ngClass]="{'transition':shiftDiv}" *ngIf="shiftDiv"></router-outlet>
+    <router-outlet [ngClass]="{'noTransition':!shiftDiv}" *ngIf="!shiftDiv"></router-outlet> -->
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

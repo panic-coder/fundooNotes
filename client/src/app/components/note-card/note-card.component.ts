@@ -13,31 +13,61 @@ export class NoteCardComponent implements OnInit {
   hover;
   showPanel = false;
   current;
+  colorMenu = false;
+  colors = [ '#fff',
+
+  "rgb(255, 138, 128)",
+  // '#e8e8e8',
+
+  "rgb(255, 209, 128)",
+
+  "rgb(255, 255, 141)",
+
+  'rgb(204, 255, 144)',
+
+  'rgb(167, 255, 235)',
+
+  'rgb(128, 216, 255)',
+
+  'rgb(130, 177, 255)',
+
+  'rgb(179, 136, 255)',
+
+  'rgb(248, 187, 208)',
+
+  'rgb(215, 204, 200)',
+
+  'rgb(207, 216, 220)'
+]
   constructor(private service: AppService) {
-    this.service.getRequest('readnote').subscribe((data: any) => {
+    // this.service.getRequest('readnote').subscribe((data: any) => {
       // console.log(data);
-      console.log(data.data);
+      // console.log(data.data);
       // this.notes = data.data;
-    })
+    // })
   }
 
-  // hoverFunction(data) {
-  //   this.current = data;
-  //   if (this.hover) {
-  //     this.hover = this.hover = false;
-  //   } else {
-  //     this.hover = this.hover = true;
-  //   }
-  // }
+ addArchive(){
+   this.data.isArchive = true;
+   this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((data: any) => {
+     console.log(data);
+     
+   })
+ }
+ removeArchive(){
+   this.data.isArchive = false;
+   this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((data: any) => {
+     console.log(data);
+     
+   })
+ }
 
-  // readAll() {
-  //   this.service.getRequest('readnote').subscribe((data: any) => {
-  //     // console.log(data);
-  //     console.log(data.data);
-  //     this.notes = data.data;
-  //   })
-  // }
-
+ colorChange() {
+   if(this.colorMenu)
+      this.colorMenu = false
+   else
+      this.colorMenu = true;
+ }
   addMore(data){
     console.log(data);
     if (this.showPanel) {

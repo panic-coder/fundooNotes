@@ -11,7 +11,7 @@
             <mat-menu #menu="matMenu" style="position: absolute;">
               <!-- <div style="margin-bottom:10px;"> -->
               <button mat-menu-item (click)="trash(data)">Delete forever</button>
-              <button mat-menu-item>Restore</button>
+              <button mat-menu-item (click)="restore(data)">Restore</button>
             <!-- </div> -->
             </mat-menu>
       </div>

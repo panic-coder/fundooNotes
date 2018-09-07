@@ -1,9 +1,9 @@
 <!-- <div fxLayout="row"> -->
 <mat-card class="card" (mouseover)="hover=true" (mouseleave)="hover=false">
   <!-- <div (mouseover)="hoverFunction(data.title)"></div> -->
-  <div (mouseover)="hover=true" (mouseleave)="hover=false">Title {{data.title}}
+  <div (mouseover)="hover=true" (mouseleave)="hover=false">{{data.title}}
   </div>
-  <div (mouseover)="hover=true" (mouseleave)="hover=false">{{data.description}}</div>
+  <div style="word-wrap:break-word" (mouseover)="hover=true" (mouseleave)="hover=false">{{data.description}}</div>
   <div (mouseover)="hover=true" (mouseleave)="hover=false">Label</div>
   <div class="icon" (mouseover)="hover=true" (mouseleave)="hover=false">
     <!-- <div> -->
@@ -19,15 +19,24 @@
       <i class="material-icons innerIconDiv" (click)="addCollaborater()">
         person_add
       </i>
-      <i class="material-icons innerIconDiv" (click)="addColor(data)">
+      <i class="material-icons innerIconDiv" (click)="colorChange()" >
         color_lens
       </i>
+      <div *ngIf="colorMenu" style="width:136px;height:110px;position:absolute;z-index: 2;background-color:white;border:1px solid #e8e8e8">
+          <button style="height:26px;width:26px;margin:4px;" mat-mini-fab *ngFor="let customColor of colors" [style.background]="customColor" (click)="addColor(customColor)">
+            <!-- {{color}} -->
+          </button>
+        </div>  
       <i class="material-icons innerIconDiv" (click)="addPhoto()">
         photo
       </i>
-      <i class="material-icons innerIconDiv" (click)="addArchive()">
+      <i *ngIf="!data.isArchive" class="material-icons innerIconDiv" (click)="addArchive()">
         archive
       </i>
+      <i *ngIf="data.isArchive" class="material-icons innerIconDiv" (click)="removeArchive()">
+        unarchive
+      </i>
+     
       <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button> -->
       <mat-icon class="innerIconDiv" [matMenuTriggerFor]="menu">more_vert</mat-icon>
       <mat-menu #menu="matMenu" style="position: absolute">
