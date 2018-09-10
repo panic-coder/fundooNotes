@@ -1,10 +1,9 @@
 <!-- <div fxLayout="row"> -->
-<mat-card class="card" (mouseover)="hover=true" (mouseleave)="hover=false">
+<mat-card class="card" (mouseover)="hover=true" (mouseleave)="hover=false" [style.background-color]="fillTheColor">
   <!-- <div (mouseover)="hoverFunction(data.title)"></div> -->
-  <div (mouseover)="hover=true" (mouseleave)="hover=false">{{data.title}}
-  </div>
+  <div (mouseover)="hover=true" (mouseleave)="hover=false" (click)="openDialog()"><b>{{data.title}}</b></div>
   <div style="word-wrap:break-word" (mouseover)="hover=true" (mouseleave)="hover=false">{{data.description}}</div>
-  <div (mouseover)="hover=true" (mouseleave)="hover=false">Label</div>
+  <div (mouseover)="hover=true" (mouseleave)="hover=false"></div>
   <div class="icon" (mouseover)="hover=true" (mouseleave)="hover=false">
     <!-- <div> -->
         <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button>
@@ -41,7 +40,7 @@
       <mat-icon class="innerIconDiv" [matMenuTriggerFor]="menu">more_vert</mat-icon>
       <mat-menu #menu="matMenu" style="position: absolute">
         <!-- <div style="margin-bottom:10px;"> -->
-        <button mat-menu-item (click)="trash(data)">Delete</button>
+        <button mat-menu-item (click)="trash(data)" (click)="changeStatus(true)">Delete</button>
         <button mat-menu-item>Add label</button>
       <!-- </div> -->
       </mat-menu>
@@ -49,4 +48,5 @@
     </div>
   </div>
 </mat-card>
+
 <!-- </div> -->

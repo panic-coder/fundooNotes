@@ -16,18 +16,27 @@ export class NotesComponent implements OnInit {
   value;
   constructor(private service: AppService) { }
 
-
   ngOnInit() {
+    this.readAll();
+  }
+
+  childStatusChanged(finished: boolean) {
+    // console.log("on Change");
+    
+    if (finished){
+      this.readAll();
+    }
+  }
+
+  readAll(){
     this.notes = [];
     this.service.getRequest('readnote').subscribe((data: any) => {
-      // console.log(data.data);
       data.data.forEach(element => {
         if(element.isTrash == false && element.isArchive == false)
           this.notes.push(element);
       });
       console.log(this.notes);
     });
-    
   }
 
   newNote() {
@@ -72,18 +81,7 @@ export class NotesComponent implements OnInit {
     this.service.postRequest(note, 'savenote').subscribe((data: any) => {
       console.log(data);
     });
-    this.notes = [];
-    // console.log('constructor');
-    this.service.getRequest('readnote').subscribe((data: any) => {
-      // console.log(data.data);
-      data.data.forEach(element => {
-        if(element.isTrash == false && element.isArchive == false)
-          this.notes.push(element);
-      });
-      console.log(this.notes);
-      
-      // this.notes = data.data;
-    });
+   this.readAll();
   }
 
   update(title, description){

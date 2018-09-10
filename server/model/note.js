@@ -15,6 +15,22 @@ var NoteSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    // checklist:
+    //     [{
+    //         "id": {
+    //             type: ObjectId
+    //         },
+    //         "list":{
+    //             type: string
+    //         },
+    //         "done":{
+    //             type: Boolean
+    //         },
+    //         "datetime":{
+    //             type: Date
+    //         }
+    //     }]
+    // ,
     isPinned: {
         type: Boolean
     },

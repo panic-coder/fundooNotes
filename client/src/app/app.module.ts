@@ -21,6 +21,8 @@ import { TrashComponent } from './components/trash/trash.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NoteCardComponent } from './components/note-card/note-card.component';
 import { IconsComponent } from './components/icons/icons.component';
+// import { DialogOverviewExampleDialog } from './components/note-card/note-card.component';
+import { DialogOverviewExampleDialog } from './components/dialog/dialog.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -40,7 +42,10 @@ export function tokenGetter() {
     TrashComponent,
     NoteCardComponent,
     IconsComponent,
+    DialogOverviewExampleDialog,
+    // DialogComponent
   ],
+  entryComponents: [DialogOverviewExampleDialog],
   imports: [
     BrowserModule,
     AppRoutingModule,

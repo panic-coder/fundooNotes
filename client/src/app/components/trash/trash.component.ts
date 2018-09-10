@@ -9,6 +9,11 @@ import { AppService } from '../../services/app.service';
 export class TrashComponent implements OnInit {
 notes = []
   constructor(private service: AppService) {
+    this.readAll();
+   }
+
+   readAll(){
+     this.notes = [];
     this.service.getRequest('readnote').subscribe((data: any) => {
       data.data.forEach(element => {
         if(element.isTrash == true){
@@ -29,7 +34,7 @@ notes = []
      data.isTrash = false;
     this.service.updateRequest('updatenote', data._id, data).subscribe((data: any) => {
       console.log(data);
-      
+      this.readAll();
     })
    }
 

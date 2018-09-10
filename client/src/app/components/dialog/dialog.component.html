@@ -1,0 +1,8 @@
+<div mat-dialog-title contenteditable="true" ><b #title>{{data.title}}</b></div>
+<div mat-dialog-actions contenteditable="true" #description>
+  {{data.description}}
+</div>
+<div mat-dialog-actions style="float: right"> 
+  <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+  <button mat-button  [mat-dialog-close]="{'title':title,'description':description}" cdkFocusInitial>Close</button>
+</div>

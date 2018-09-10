@@ -1,6 +1,12 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter, Inject } from '@angular/core';
 import { AppService } from '../../services/app.service';
-import { MatMenuTrigger } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { DialogOverviewExampleDialog } from '../dialog/dialog.component';
+
+export interface DialogData {
+  animal: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-note-card',
@@ -9,66 +15,75 @@ import { MatMenuTrigger } from '@angular/material';
 })
 export class NoteCardComponent implements OnInit {
   @Input() data: any;
+  @Output() onStatusChange = new EventEmitter<boolean>();
 
+
+  title;
+  description;
   hover;
+  fillTheColor;
   showPanel = false;
   current;
   colorMenu = false;
-  colors = [ '#fff',
+  colors = [
+    '#fff',
 
-  "rgb(255, 138, 128)",
-  // '#e8e8e8',
+    'rgb(255, 138, 128)',
 
-  "rgb(255, 209, 128)",
+    'rgb(255, 209, 128)',
 
-  "rgb(255, 255, 141)",
+    'rgb(255, 255, 141)',
 
-  'rgb(204, 255, 144)',
+    'rgb(204, 255, 144)',
 
-  'rgb(167, 255, 235)',
+    'rgb(167, 255, 235)',
 
-  'rgb(128, 216, 255)',
+    'rgb(128, 216, 255)',
 
-  'rgb(130, 177, 255)',
+    'rgb(130, 177, 255)',
 
-  'rgb(179, 136, 255)',
+    'rgb(179, 136, 255)',
 
-  'rgb(248, 187, 208)',
+    'rgb(248, 187, 208)',
 
-  'rgb(215, 204, 200)',
+    'rgb(215, 204, 200)',
 
-  'rgb(207, 216, 220)'
-]
-  constructor(private service: AppService) {
-    // this.service.getRequest('readnote').subscribe((data: any) => {
-      // console.log(data);
-      // console.log(data.data);
-      // this.notes = data.data;
-    // })
+    'rgb(207, 216, 220)'
+  ]
+
+  constructor(private service: AppService, public dialog: MatDialog) { 
+    if(this.data.color != null){
+      this.fillTheColor = this.data.color;
+    }
   }
 
- addArchive(){
-   this.data.isArchive = true;
-   this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((data: any) => {
-     console.log(data);
-     
-   })
- }
- removeArchive(){
-   this.data.isArchive = false;
-   this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((data: any) => {
-     console.log(data);
-     
-   })
- }
+  changeStatus(finished: boolean) {
+    this.onStatusChange.emit(finished);
+  }
 
- colorChange() {
-   if(this.colorMenu)
+  addArchive() {
+    this.data.isArchive = true;
+    this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((data: any) => {
+      console.log(data);
+
+    })
+  }
+  removeArchive() {
+    this.data.isArchive = false;
+    this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((data: any) => {
+      console.log(data);
+
+    })
+  }
+
+  colorChange() {
+    if (this.colorMenu)
       this.colorMenu = false
-   else
+    else
       this.colorMenu = true;
- }
-  addMore(data){
+  }
+
+  addMore(data) {
     console.log(data);
     if (this.showPanel) {
       this.showPanel = false;
@@ -77,23 +92,47 @@ export class NoteCardComponent implements OnInit {
     }
   }
 
-  addColor(data){
+  addColor(data) {
     console.log(data);
+    this.fillTheColor = data;
+    this.data.color = this.fillTheColor;
+    this.service.updateRequest('updatenote', data._id, data).subscribe((data: any) => {
+      console.log(data);
+    })
   }
-  trash(data){
+
+  trash(data) {
     console.log(data);
     data.isTrash = true;
     this.service.updateRequest('updatenote', data._id, data).subscribe((data: any) => {
       console.log(data);
-      
     })
-    // this.service.deleteRequest('deletenote', data._id).subscribe((data:any) => {
-    //   console.log(data);
-    // })
-    
   }
 
   ngOnInit() { }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '600px',
+      data: this.data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed : '+result.title.innerHTML);
+      console.log("Description : "+result.description.innerHTML);
+      this.data.title = result.title.innerHTML;
+      this.data.description = result.description.innerHTML;
+      var id = localStorage.getItem('id')
+      console.log(this.data);
+      
+      this.service.updateRequest('updatenote',this.data._id,this.data).subscribe((data: any) => {
+        console.log(data);
+      })
+    });
+  }
 
 }
+
+
+
+
