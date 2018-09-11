@@ -9,20 +9,20 @@ import { AppService } from '../../services/app.service';
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent implements OnInit {
-
+  pinnedNotes = [];
   notes = [];
   enterExpression = true;
   expression = false;
   value;
+  pinned = false;
   constructor(private service: AppService) { }
 
   ngOnInit() {
+
     this.readAll();
   }
 
   childStatusChanged(finished: boolean) {
-    // console.log("on Change");
-    
     if (finished){
       this.readAll();
     }
@@ -30,10 +30,16 @@ export class NotesComponent implements OnInit {
 
   readAll(){
     this.notes = [];
+    this.pinnedNotes = [];
+    this.pinned = false;
     this.service.getRequest('readnote').subscribe((data: any) => {
       data.data.forEach(element => {
-        if(element.isTrash == false && element.isArchive == false)
+        if(element.isTrash == false && element.isArchive == false && element.isPinned == false)
           this.notes.push(element);
+        if(element.isPinned == true){
+          this.pinnedNotes.push(element);
+          this.pinned = true;
+        }
       });
       console.log(this.notes);
     });

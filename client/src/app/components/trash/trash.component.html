@@ -1,6 +1,6 @@
 <div class="trashDiv" fxLayout="row wrap">
 <div  *ngFor="let data of notes">
-    <mat-card class="card" (mouseover)="hover=true" (mouseleave)="hover=false">
+    <mat-card class="card" (mouseover)="hover=true" (mouseleave)="hover=false" [style.background-color]="data.color">
         <!-- <div (mouseover)="hoverFunction(data.title)"></div> -->
         <div >Title {{data.title}}
         </div>

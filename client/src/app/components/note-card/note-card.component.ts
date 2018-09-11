@@ -52,9 +52,17 @@ export class NoteCardComponent implements OnInit {
   ]
 
   constructor(private service: AppService, public dialog: MatDialog) { 
-    if(this.data.color != null){
-      this.fillTheColor = this.data.color;
-    }
+    // if(this.data.color != null){
+    //   this.fillTheColor = this.data.color;
+    // }
+    // console.log(data);
+    
+  }
+  update() {
+    this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((data: any) => {
+      console.log(data);
+      this.changeStatus(true);
+    })
   }
 
   changeStatus(finished: boolean) {
@@ -63,17 +71,13 @@ export class NoteCardComponent implements OnInit {
 
   addArchive() {
     this.data.isArchive = true;
-    this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((data: any) => {
-      console.log(data);
-
-    })
+    this.data.isPinned = false;
+    this.update();
   }
+
   removeArchive() {
     this.data.isArchive = false;
-    this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((data: any) => {
-      console.log(data);
-
-    })
+    this.update();
   }
 
   colorChange() {
@@ -92,24 +96,35 @@ export class NoteCardComponent implements OnInit {
     }
   }
 
-  addColor(data) {
-    console.log(data);
-    this.fillTheColor = data;
-    this.data.color = this.fillTheColor;
-    this.service.updateRequest('updatenote', data._id, data).subscribe((data: any) => {
-      console.log(data);
-    })
+  addColor(color) {
+    console.log(color);
+    this.fillTheColor = color;
+    this.data.color = color;
+    this.update();
   }
 
   trash(data) {
     console.log(data);
     data.isTrash = true;
-    this.service.updateRequest('updatenote', data._id, data).subscribe((data: any) => {
-      console.log(data);
-    })
+   this.update();
   }
 
-  ngOnInit() { }
+  pinIt() {
+    console.log(this.data);
+    if(this.data.isPinned)
+      this.data.isPinned = false;
+    else{
+      this.data.isPinned = true;
+      this.data.isArchive = false;
+    }
+    this.update();
+  }
+
+  ngOnInit() {
+     if(this.data.color != null){
+      this.fillTheColor = this.data.color;
+    }
+   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
@@ -120,14 +135,11 @@ export class NoteCardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed : '+result.title.innerHTML);
       console.log("Description : "+result.description.innerHTML);
+      
       this.data.title = result.title.innerHTML;
       this.data.description = result.description.innerHTML;
-      var id = localStorage.getItem('id')
-      console.log(this.data);
-      
-      this.service.updateRequest('updatenote',this.data._id,this.data).subscribe((data: any) => {
-        console.log(data);
-      })
+      console.log(this.data); 
+      this.update();
     });
   }
 

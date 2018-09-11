@@ -121,3 +121,12 @@ div[contenteditable=true]:empty::before {
     /* padding-right: 200px; */
     /* width: 900px; */
 }
+
+.written {
+    margin-left: 220px;
+    margin-bottom: -40px;
+    margin-top: 20px;
+    opacity: 0.6;
+    font-family: 'Roboto',arial,sans-serif;
+    font-size: 12px;
+}

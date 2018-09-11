@@ -31,28 +31,38 @@
       <div class="inputNote" contenteditable="true" placeholder="Take a note" #description>
       </div>
       <div class="iconsDiv">
-          <i class="material-icons innerIconDiv" (click)="addReminder()">
-              touch_app
-            </i>
-            <i class="material-icons innerIconDiv" (click)="addCollaborater()">
-              person_add
-            </i>
-            <i class="material-icons innerIconDiv" (click)="addColor()">
-              color_lens
-            </i>
-            <i class="material-icons innerIconDiv" (click)="addPhoto()">
-              photo
-            </i>
-            <i class="material-icons innerIconDiv" (click)="addArchive()">
-              archive
-            </i>
-            <i class="material-icons innerIconDiv" (click)="addMore()">
-              more_vert
-            </i>
+        <i class="material-icons innerIconDiv" (click)="addReminder()">
+          touch_app
+        </i>
+        <i class="material-icons innerIconDiv" (click)="addCollaborater()">
+          person_add
+        </i>
+        <i class="material-icons innerIconDiv" (click)="addColor()">
+          color_lens
+        </i>
+        <i class="material-icons innerIconDiv" (click)="addPhoto()">
+          photo
+        </i>
+        <i class="material-icons innerIconDiv" (click)="addArchive()">
+          archive
+        </i>
+        <i class="material-icons innerIconDiv" (click)="addMore()">
+          more_vert
+        </i>
         <button mat-button class="closeButton" (click)="update(title,description)">CLOSE</button>
       </div>
     </mat-card>
 
+  </div>
+  <div *ngIf="pinned" class="written">
+    <h3>Pinned</h3>
+  </div>
+  <div fxLayout="space-around" fxLayoutGap.xs="0" fxLayout.xs="column" fxLayoutGap="20px" fxLayout.gt-xs="row wrap"
+    fxLayout="row wrap" class="noteCards">
+    <app-note-card [data]="data" *ngFor="let data of pinnedNotes" (onStatusChange)="childStatusChanged($event)"></app-note-card><br>
+  </div>
+  <div class="written">
+    <h3>Others</h3>
   </div>
   <div fxLayout="space-around" fxLayoutGap.xs="0" fxLayout.xs="column" fxLayoutGap="20px" fxLayout.gt-xs="row wrap"
     fxLayout="row wrap" class="noteCards">

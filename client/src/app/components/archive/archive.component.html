@@ -1,3 +1,3 @@
 <div class="archiveDiv" fxLayout="row wrap">
-    <app-note-card [data] = data *ngFor="let data of notes"></app-note-card>
+    <app-note-card [data] = data *ngFor="let data of notes" (onStatusChange)="childStatusChanged($event)"></app-note-card>
 </div>

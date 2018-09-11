@@ -16,5 +16,52 @@
     padding: 2px;
     padding-right: 14px;
     opacity: 0.5;
+    cursor: pointer;
     /* position: absolute; */
+}
+
+.pinImage {
+    float: right;
+    opacity: 0.5;
+    height: 15px;
+    width: 15px;
+}
+
+.display {
+    display: none;
+}
+
+.card:hover  .display {
+    display: block;
+}
+
+.pinDiv {
+    float: right;
+    width: 20px;
+    cursor: pointer;
+}
+
+.title {
+    width: 220px;
+    float: left;
+}
+
+.descriptionDiv {
+    margin-top: 30px;
+    word-wrap:break-word
+}
+
+.colorMenuDiv {
+    width:136px;
+    height:110px;
+    position:absolute;
+    z-index: 2;
+    background-color:white;
+    border:1px solid #e8e8e8
+}
+
+.colorMenuButton {
+    height:26px;
+    width:26px;
+    margin:4px;
 }
