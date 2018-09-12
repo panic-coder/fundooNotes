@@ -2,10 +2,10 @@
 <div  *ngFor="let data of notes">
     <mat-card class="card" (mouseover)="hover=true" (mouseleave)="hover=false" [style.background-color]="data.color">
         <!-- <div (mouseover)="hoverFunction(data.title)"></div> -->
-        <div >Title {{data.title}}
+        <div >{{data.title}}
         </div>
         <div style="word-wrap:break-word">{{data.description}}</div>
-        <div >Label</div>
+        <div ></div>
         <div class="icon">
             <mat-icon class="innerIconDiv" [matMenuTriggerFor]="menu">more_vert</mat-icon>
             <mat-menu #menu="matMenu" style="position: absolute;">

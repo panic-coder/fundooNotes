@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { DataServiceService } from '../../services/data-service.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private data: DataServiceService) { }
 
   raw_data
   firstCharacter = '';
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   email = ''
   sign = false;
   shiftDiv = false;
+  view=false;
 
   ngOnInit() {
     const helper = new JwtHelperService();
@@ -28,6 +30,10 @@ export class HomeComponent implements OnInit {
     localStorage.setItem('id',this.raw_data.data);
     var user = localStorage.getItem('name');
     this.firstCharacter = user[0];
+    console.log(this.data);
+    
+    this.data.currentMessage.subscribe(message => this.view=message);
+
   }
 
   name1 = "Google"
@@ -88,5 +94,10 @@ export class HomeComponent implements OnInit {
     }
     // console.log(this.shiftDiv);
     
+  }
+
+  toggleView(){
+    this.view = !this.view;
+    this.data.changeMessage(this.view);
   }
 }

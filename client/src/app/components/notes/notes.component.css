@@ -11,6 +11,14 @@
   /* margin-top: 30px; */
 }
 
+.card-grid{
+    width: 320px;
+}
+
+.card-list{
+    width: 100%;
+}
+
 .notesTitle {
   border: none;
   padding: 0;
@@ -115,7 +123,7 @@ div[contenteditable=true]:empty::before {
 .noteCards {
     /* width: 800px; */
     margin-top: 30px;
-    margin-left: 200px;
+    margin-left: 240px;
     margin-right: 40px;
     /* padding-left: 200px; */
     /* padding-right: 200px; */
@@ -123,7 +131,7 @@ div[contenteditable=true]:empty::before {
 }
 
 .written {
-    margin-left: 220px;
+    margin-left: 240px;
     margin-bottom: -40px;
     margin-top: 20px;
     opacity: 0.6;

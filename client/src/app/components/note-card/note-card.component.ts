@@ -16,6 +16,7 @@ export interface DialogData {
 export class NoteCardComponent implements OnInit {
   @Input() data: any;
   @Output() onStatusChange = new EventEmitter<boolean>();
+  @Input() view:boolean;
 
 
   title;
@@ -56,8 +57,8 @@ export class NoteCardComponent implements OnInit {
     //   this.fillTheColor = this.data.color;
     // }
     // console.log(data);
-    
   }
+
   update() {
     this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((data: any) => {
       console.log(data);
@@ -105,8 +106,9 @@ export class NoteCardComponent implements OnInit {
 
   trash(data) {
     console.log(data);
-    data.isTrash = true;
-   this.update();
+    this.data.isTrash = true;
+    this.data.isArchive = false;
+    this.update();
   }
 
   pinIt() {

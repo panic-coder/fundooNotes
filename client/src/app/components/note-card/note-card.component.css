@@ -1,10 +1,11 @@
 .card {
     /* margin-top: -300px; */
-    width: 240px;
+    /* width: 240px; */
     position: relative;
     margin: 8px;
     /* margin-left: 200px; */
 }
+
 
 .icon {
     height:20px;

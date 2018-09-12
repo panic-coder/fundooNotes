@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit, SecurityContext } from '@angular/core';
 import { AppService } from '../../services/app.service';
+import { DataServiceService } from '../../services/data-service.service';
 
 
 
@@ -9,16 +10,19 @@ import { AppService } from '../../services/app.service';
   styleUrls: ['./notes.component.css']
 })
 export class NotesComponent implements OnInit {
+
+  @Input() view:boolean;
+
   pinnedNotes = [];
   notes = [];
   enterExpression = true;
   expression = false;
   value;
   pinned = false;
-  constructor(private service: AppService) { }
+  constructor(private service: AppService,private data:DataServiceService) { }
 
   ngOnInit() {
-
+    this.data.currentMessage.subscribe(message => this.view = message)
     this.readAll();
   }
 
@@ -49,7 +53,6 @@ export class NotesComponent implements OnInit {
     this.expression = true;
     this.enterExpression = false;
   }
-
 
 // public getSantizeHtml(html : string) {
 //   return this.sanitizer.bypassSecurityTrustUrl(html);

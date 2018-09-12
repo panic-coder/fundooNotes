@@ -23,6 +23,7 @@ import { NoteCardComponent } from './components/note-card/note-card.component';
 import { IconsComponent } from './components/icons/icons.component';
 // import { DialogOverviewExampleDialog } from './components/note-card/note-card.component';
 import { DialogOverviewExampleDialog } from './components/dialog/dialog.component';
+import { DataServiceService } from './services/data-service.service';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -62,7 +63,7 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [AppService],
+  providers: [AppService,DataServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

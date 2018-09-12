@@ -21,10 +21,13 @@
             refresh
             </i>
     </div>
-    <div class="afterSearchButton">
-        <i class="material-icons">
+    <div class="afterSearchButton" (click)="toggleView()">
+        <i *ngIf="view == false" class="material-icons">
             view_stream
-            </i>
+        </i>
+        <i *ngIf="view == true" class="material-icons">
+          view_module
+        </i>
     </div>
     <div class="toolLeftDiv" >
         <!-- <a href="www.google.co.in"> -->

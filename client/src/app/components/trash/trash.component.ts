@@ -26,7 +26,7 @@ notes = []
    trash(data) {
     this.service.deleteRequest('deletenote', data._id).subscribe((data: any) => {
       console.log(data);
-      
+      this.readAll()
     })
    }
 

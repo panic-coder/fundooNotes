@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AppService } from '../../services/app.service';
+import { DataServiceService } from '../../services/data-service.service';
 
 @Component({
   selector: 'app-archive',
@@ -8,11 +9,16 @@ import { AppService } from '../../services/app.service';
 })
 export class ArchiveComponent implements OnInit {
   notes = []
-  constructor(private service: AppService) {}
+  constructor(private service: AppService, private data: DataServiceService) {}
   
   name1 = "Archive";
   name2 = ""
+  @Input() view:boolean;
+
+
   ngOnInit() {
+    this.data.currentMessage.subscribe(message => this.view = message)
+
     this.readAll();
   }
 
