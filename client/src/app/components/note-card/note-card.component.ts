@@ -18,7 +18,9 @@ export class NoteCardComponent implements OnInit {
   @Output() onStatusChange = new EventEmitter<boolean>();
   @Input() view:boolean;
 
-
+  small = false;
+  inputImage = false;
+  imagePath = '';
   title;
   description;
   hover;
@@ -52,12 +54,7 @@ export class NoteCardComponent implements OnInit {
     'rgb(207, 216, 220)'
   ]
 
-  constructor(private service: AppService, public dialog: MatDialog) { 
-    // if(this.data.color != null){
-    //   this.fillTheColor = this.data.color;
-    // }
-    // console.log(data);
-  }
+  constructor(private service: AppService, public dialog: MatDialog) { }
 
   update() {
     this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((data: any) => {
@@ -68,6 +65,20 @@ export class NoteCardComponent implements OnInit {
 
   changeStatus(finished: boolean) {
     this.onStatusChange.emit(finished);
+  }
+
+  addImage() {
+    this.inputImage = !this.inputImage;
+    // this.onFileSelected(event);
+  }
+
+  onFileSelected(event) {
+    console.log(event);
+    // console.log(event.target.files[0])
+    this.data.image = event.target.files[0].name;
+    this.imagePath = this.data.image;
+    console.log(this.imagePath);
+    
   }
 
   addArchive() {
@@ -126,6 +137,8 @@ export class NoteCardComponent implements OnInit {
      if(this.data.color != null){
       this.fillTheColor = this.data.color;
     }
+    if(this.data.image != null)
+    this.imagePath = this.data.image;
    }
 
   openDialog(): void {

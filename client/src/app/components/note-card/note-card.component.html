@@ -1,5 +1,7 @@
 <mat-card class="card" [style.background-color]="fillTheColor">
-
+  <div *ngIf="imagePathNotNull">
+    <img [src]="imagePath" alt="" srcset="">
+  </div>
   <div class="title" (click)="openDialog()"><b>{{data.title}}</b></div>
   <div class="pinDiv">
     <img class="pinImage display" src="../../../assets/images/pin.svg" (click)="pinIt()">
@@ -23,9 +25,11 @@
           (click)="addColor(customColor)">
         </button>
       </div>
-      <i class="material-icons innerIconDiv" (click)="addPhoto()">
+      <i class="material-icons innerIconDiv" (click)="fileInput.click()" >
         photo
       </i>
+      <input #fileInput type="file" style="display:none" (change)="onFileSelected($event)" >
+
       <i *ngIf="!data.isArchive" class="material-icons innerIconDiv" (click)="addArchive()">
         archive
       </i>

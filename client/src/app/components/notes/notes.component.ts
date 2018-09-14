@@ -83,7 +83,8 @@ export class NotesComponent implements OnInit {
       "isArchive": false,
       "isTrash": false,
       "reminder":null,
-      "color":null
+      "color":null,
+      "image":null
     }
     this.expression = false;
     this.enterExpression = true;

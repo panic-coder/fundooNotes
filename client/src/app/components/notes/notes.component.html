@@ -15,11 +15,6 @@
         </div>
       </mat-card-title>
     </mat-card>
-    <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>Item 1</button>
-        <button mat-menu-item>Item 2</button>
-      </mat-menu> -->    
     <mat-card *ngIf="expression" class="hiddentakeNotes">
       <div class="hiddenDiv">
         <span>
@@ -58,7 +53,7 @@
     <h3>Pinned</h3>
   </div>
   <div fxLayout="space-around" fxLayoutGap.xs="0" fxLayout.xs="column" fxLayoutGap="20px" fxLayout.gt-xs="row wrap"
-    fxLayout="row wrap" class="noteCards">
+    fxLayout="row wrap" [ngClass]="{'noteCards': !small, 'noteCardsSmall': small }">
     <app-note-card [ngClass]="{'card-grid': !view,'card-list': view}" [data]="data" *ngFor="let data of pinnedNotes" (onStatusChange)="childStatusChanged($event)"></app-note-card><br>
   </div>
   <div class="written">
@@ -66,6 +61,6 @@
   </div>
   <div fxLayout="space-around" fxLayoutGap.xs="0" fxLayout.xs="column" fxLayoutGap="20px" fxLayout.gt-xs="row wrap"
     fxLayout="row wrap" class="noteCards">
-    <app-note-card [ngClass]="{'card-grid': !view,'card-list': view}" [view]='view' [data]="data" *ngFor="let data of notes" (onStatusChange)="childStatusChanged($event)"></app-note-card>
+    <app-note-card [ngClass]="{'card-grid': !view,'card-list': view}" [data]="data" *ngFor="let data of notes" (onStatusChange)="childStatusChanged($event)"></app-note-card>
   </div>
 </div>

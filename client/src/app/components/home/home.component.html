@@ -1,4 +1,5 @@
-<div class="container" >
+<div fxFlex >
+<div fxLayout="column wrap" class="container">
   <mat-toolbar class="toolbar">
     <button class="menu" mat-icon-button (click)="snav.toggle()" (click)="shift()"><mat-icon>menu</mat-icon></button>
     <span class="app-name1">{{name1}}</span>
@@ -105,14 +106,10 @@
         <!-- <a mat-list-item routerLink="." (click) = "setting()">Reminders</a> -->
       </mat-nav-list>
     </mat-sidenav>
-    <!-- <mat-sidenav-content [ngClass]="{'transition':shiftDiv}" *ngIf="shiftDiv">
-      <router-outlet></router-outlet>
-    </mat-sidenav-content> -->
   <mat-sidenav-content>
-    <!-- <router-outlet [ngClass]="{'transition':shiftDiv}" *ngIf="shiftDiv"></router-outlet>
-    <router-outlet [ngClass]="{'noTransition':!shiftDiv}" *ngIf="!shiftDiv"></router-outlet> -->
     <router-outlet></router-outlet>
   </mat-sidenav-content>
   </mat-sidenav-container>
+</div>
 </div>
 
