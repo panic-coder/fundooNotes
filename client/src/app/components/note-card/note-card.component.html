@@ -1,7 +1,7 @@
 <mat-card class="card" [style.background-color]="fillTheColor">
-  <div *ngIf="imagePathNotNull">
+  <!-- <div *ngIf="inputImage">
     <img [src]="imagePath" alt="" srcset="">
-  </div>
+  </div> -->
   <div class="title" (click)="openDialog()"><b>{{data.title}}</b></div>
   <div class="pinDiv">
     <img class="pinImage display" src="../../../assets/images/pin.svg" (click)="pinIt()">

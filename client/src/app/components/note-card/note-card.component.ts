@@ -3,6 +3,7 @@ import { AppService } from '../../services/app.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogOverviewExampleDialog } from '../dialog/dialog.component';
 
+
 export interface DialogData {
   animal: string;
   name: string;
@@ -75,10 +76,17 @@ export class NoteCardComponent implements OnInit {
   onFileSelected(event) {
     console.log(event);
     // console.log(event.target.files[0])
-    this.data.image = event.target.files[0].name;
+    this.data.image = event.target.files[0];
     this.imagePath = this.data.image;
-    console.log(this.imagePath);
+    var fd = new FormData();
+    fd.append('image',event.target.files[0])
+    // this.inputImage = true;
     
+    console.log(this.imagePath);
+    this.service.postRequest(fd, 'imageupload').subscribe((data:any) => {
+      console.log(data);
+    })
+    // this.update();
   }
 
   addArchive() {

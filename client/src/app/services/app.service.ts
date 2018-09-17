@@ -13,8 +13,8 @@ export class AppService {
   link = 'http://localhost:3000/';
 
   postRequest(user, url) {
-    var requestHeader = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(this.link+url, user, { headers: requestHeader });
+    // var requestHeader = new HttpHeaders({'Content-Type': 'application/json'});
+    return this.http.post(this.link+url, user);
   }
 
   getRequest(url){

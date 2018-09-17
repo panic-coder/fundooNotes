@@ -9,7 +9,9 @@ var cors = require('cors')
 mongoose.connect(config.database, {useNewUrlParser: true})
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+// app.use(bodyParser());
 var routes = require('./routes/routes');
 app.use('/', routes);
 

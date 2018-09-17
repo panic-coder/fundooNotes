@@ -11,8 +11,9 @@ var nodemailer = require('nodemailer');
 // var passport = require('passport');
 // var LocalStrategy = require('passport-local').Strategy;
 var Note = require('../model/note');
-
 var jwt = require('jsonwebtoken');
+var multer = require('multer');
+var base64Img = require('base64-img');
 
 router.post('/register', (req, res) => {
     var newUser = new User({
@@ -341,5 +342,47 @@ router.post('/reset', function(req, res) {
           })
       })
   })
+
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads')
+    },
+    filename: function (req, file, cb) {
+      console.log(file);
+      cb(null, file.fieldname + '-' + Date.now() + '-' + file.originalname)
+    }
+  })
+   
+var upload = multer({ storage: storage }).single('image');
+
+router.post('/imageupload', function(req, res) {
+    console.log(`$req.body   before `);
+    upload(req, res, function (err) {
+        if (err) {
+            console.log("error");
+            res.json({                                                                                       
+                success: false,
+                msg: "Failed to upload image",
+                status_code: 500
+            })
+        }
+        base64Img.base64('../uploads/image-1537180736533-k2.jpg', function(err, data) {
+            if(err){
+                console.log("error==========");
+                console.log(err);
+            }
+            console.log("output==========");
+            
+            console.log(data); //cGF0aC90by9maWxlLmpwZw==
+            res.json({
+                success: true,
+                msg: "Successfully uploaded image",
+                value: req.body,
+                status_code: 200
+            })
+
+        })
+      })
+})
 
 module.exports = router; //Getting all the routes available in exports module
