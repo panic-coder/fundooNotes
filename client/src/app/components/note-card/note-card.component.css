@@ -4,11 +4,13 @@
     position: relative;
     margin: 8px;
     /* margin-left: 200px; */
+    padding: 0.2px;
 }
 
 
 .icon {
     height:20px;
+    padding: 10px;
 }
 
 .innerIconDiv {
@@ -45,11 +47,15 @@
 .title {
     width: 220px;
     float: left;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 .descriptionDiv {
-    margin-top: 30px;
-    word-wrap:break-word
+    margin-top: 40px;
+    word-wrap:break-word;
+    margin-left:10px;
+    margin-right: 10px;
 }
 
 .colorMenuDiv {
@@ -65,4 +71,9 @@
     height:26px;
     width:26px;
     margin:4px;
+}
+
+.image {
+    height: 100%;
+    width: 100%;
 }

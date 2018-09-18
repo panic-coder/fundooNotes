@@ -1,19 +1,15 @@
 var express = require('express');
-// var app = express();
 var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../model/user');
 var bcrypt = require('bcryptjs');
 var saltRounds = 10;
-// var crypto = require('crypto');
 var async = require('async');
 var nodemailer = require('nodemailer');
-// var passport = require('passport');
-// var LocalStrategy = require('passport-local').Strategy;
 var Note = require('../model/note');
 var jwt = require('jsonwebtoken');
 var multer = require('multer');
-var base64Img = require('base64-img');
+var fs = require('fs');
 
 router.post('/register', (req, res) => {
     var newUser = new User({
@@ -285,8 +281,8 @@ router.post('/reset', function(req, res) {
 
   router.put('/updatenote/:id', function(req, res) {
     Note.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, note) => {
-        console.log(req.body);
-         console.log(req.params.id);
+        // console.log(req.body);
+        //  console.log(req.params.id);
 
         if(err){
             res.json({
@@ -366,23 +362,21 @@ router.post('/imageupload', function(req, res) {
                 status_code: 500
             })
         }
-        base64Img.base64('../uploads/image-1537180736533-k2.jpg', function(err, data) {
-            if(err){
-                console.log("error==========");
-                console.log(err);
-            }
-            console.log("output==========");
-            
-            console.log(data); //cGF0aC90by9maWxlLmpwZw==
-            res.json({
-                success: true,
-                msg: "Successfully uploaded image",
-                value: req.body,
-                status_code: 200
-            })
-
-        })
+        
       })
 })
+
+router.post("/upload", multer({dest: "./uploads/"}).array("image", 12), function(req, res) {
+    var fileInfo = [];
+    for(var i = 0; i < req.files.length; i++) {
+        fileInfo.push({
+            "originalName": req.files[i].originalName,
+            "size": req.files[i].size,
+            "b64": new Buffer(fs.readFileSync(req.files[i].path)).toString("base64")
+        });
+        fs.unlink(req.files[i].path);
+    }
+    res.send(fileInfo);
+});
 
 module.exports = router; //Getting all the routes available in exports module

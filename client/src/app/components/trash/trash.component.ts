@@ -8,6 +8,8 @@ import { AppService } from '../../services/app.service';
 })
 export class TrashComponent implements OnInit {
 notes = []
+inputImage = false;
+
   constructor(private service: AppService) {
     this.readAll();
    }
@@ -39,6 +41,12 @@ notes = []
    }
 
   ngOnInit() {
+    this.notes.forEach(element => {
+      if(element.image != null){
+        this.inputImage = true;
+      }  
+    });
+    
   }
 
 }

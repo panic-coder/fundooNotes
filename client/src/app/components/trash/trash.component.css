@@ -1,6 +1,7 @@
 
 .icon {
-    height:20px;
+    margin-bottom:25px;;
+    height:30px;
 }
 
 .trashDiv {
@@ -12,6 +13,7 @@
     width: 240px;
     position: relative;
     margin: 8px;
+    padding: 0.2px;
 }
 
 .innerIconDiv {
@@ -20,5 +22,20 @@
     padding: 5px;
     padding-right: 14px;
     opacity: 0.5;
-    float:right
+    float:right;
+}
+
+.image {
+    height: 100%;
+    width: 100%;
+}
+
+.title {
+    font-weight: bold;
+    padding: 10px;
+}
+
+.description {
+    margin-left:10px;
+    margin-right: 10px;
 }

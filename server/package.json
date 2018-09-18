@@ -11,7 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.1",
-    "base64-img": "^1.0.4",
     "bcrpyt": "^2.0.0",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",

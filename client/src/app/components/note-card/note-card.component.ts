@@ -21,7 +21,9 @@ export class NoteCardComponent implements OnInit {
 
   small = false;
   inputImage = false;
-  imagePath = '';
+  imagePath; 
+  base64;
+  imageSource;
   title;
   description;
   hover;
@@ -83,8 +85,16 @@ export class NoteCardComponent implements OnInit {
     // this.inputImage = true;
     
     console.log(this.imagePath);
-    this.service.postRequest(fd, 'imageupload').subscribe((data:any) => {
+    this.service.postRequest(fd, 'upload').subscribe((data:any) => {
       console.log(data);
+      this.base64 = data[0].b64;
+      console.log(this.base64);
+      this.imagePath = 'data:image/png;base64,';
+      console.log(this.imagePath);
+      this.imageSource = this.imagePath + this.base64;
+      console.log(this.imageSource);
+      this.data.image = this.imageSource;
+      this.update();
     })
     // this.update();
   }
@@ -141,12 +151,18 @@ export class NoteCardComponent implements OnInit {
     this.update();
   }
 
+  addReminder() {
+    console.log(this.data);
+  }
+
   ngOnInit() {
      if(this.data.color != null){
       this.fillTheColor = this.data.color;
     }
-    if(this.data.image != null)
-    this.imagePath = this.data.image;
+    if(this.data.image != null){
+      this.inputImage = true;
+    }
+    
    }
 
   openDialog(): void {
