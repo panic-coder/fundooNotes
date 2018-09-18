@@ -259,7 +259,7 @@ router.post('/reset', function(req, res) {
   });
 
   router.post('/savenote', function(req, res) {
-      console.log(req.body);
+    //   console.log(req.body);
       var newNote = new Note(req.body)
       Note.createNote(newNote, (err) => {
           if(err){
