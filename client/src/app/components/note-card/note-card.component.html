@@ -8,13 +8,47 @@
   </div>
 
   <div class="descriptionDiv">{{data.description}}</div>
-  <div></div>
+  <div class="reminderPanel">
+    <div *ngIf="reminderShow" class="reminderData" style="padding-top:20px">
+    {{reminderData}}
+  </div>
+</div>
   <div class="icon">
     <div class="display">
       <i class="material-icons innerIconDiv" (click)="addReminder()">
         touch_app
       </i>
-      
+      <div *ngIf="reminderMenu" class="reminderDiv">
+        <div>
+         <p class="reminderTitle">Reminder:</p> 
+        </div>
+        <div>
+          <button mat-button class="reminderButton" (click)="laterToday('Today')">
+            Later Today
+            <div class="reminderButtonDiv">8:00 PM</div>
+          </button>
+        </div>
+        <div>
+            <button mat-button class="reminderButton" (click)="laterToday('Tomorrow')"> 
+              Tomorrow
+              <div class="reminderButtonDiv">8:00 AM</div>
+            </button>
+          </div>
+          <div>
+              <button mat-button class="reminderButton" (click)="laterToday('Mon')">
+                Next Week
+                <div class="reminderButtonDiv">Mon 8:00 PM</div>
+              </button>
+            </div>
+            <div>
+                <button mat-button class="reminderButton">
+                   <i class="material-icons" >
+                      query_builder
+                    </i>
+                    Pick date & time
+                </button>
+              </div>
+      </div>
       <i class="material-icons innerIconDiv" (click)="addCollaborater()">
         person_add
       </i>

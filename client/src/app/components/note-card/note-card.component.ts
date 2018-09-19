@@ -31,6 +31,9 @@ export class NoteCardComponent implements OnInit {
   showPanel = false;
   current;
   colorMenu = false;
+  reminderMenu = false;
+  reminderShow = false;
+  reminderData;
   colors = [
     '#fff',
 
@@ -153,6 +156,7 @@ export class NoteCardComponent implements OnInit {
 
   addReminder() {
     console.log(this.data);
+    this.reminderMenu = !this.reminderMenu;
   }
 
   ngOnInit() {
@@ -180,6 +184,13 @@ export class NoteCardComponent implements OnInit {
       console.log(this.data); 
       this.update();
     });
+  }
+
+  laterToday(day) {
+    var date = new Date();
+    console.log(date);
+    this.reminderShow = true;
+    this.reminderData = day+',8:00 PM'
   }
 
 }

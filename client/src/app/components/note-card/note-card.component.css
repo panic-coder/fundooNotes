@@ -11,6 +11,7 @@
 .icon {
     height:20px;
     padding: 10px;
+    padding-bottom: 20px;
 }
 
 .innerIconDiv {
@@ -76,4 +77,31 @@
 .image {
     height: 100%;
     width: 100%;
+}
+
+.reminderDiv {
+    width: 300px;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #e8e8e8;
+    z-index: 1;
+}
+
+.reminderButton {
+    width: 100%;
+    text-align: start;
+}
+
+.reminderTitle {
+    padding-left: 15px;
+}
+
+.reminderButtonDiv {
+    float:right;
+    opacity: 0.5;
+}
+
+.reminderPanel {
+    height: 40px;
+    margin-left: 10px;
 }

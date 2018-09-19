@@ -291,7 +291,7 @@ router.post('/reset', function(req, res) {
                 status_code: 500
             })
         }
-        console.log(note);
+        // console.log(note);
         
         res.json({
             success: true,
@@ -362,8 +362,7 @@ router.post('/imageupload', function(req, res) {
                 status_code: 500
             })
         }
-        
-      })
+    })
 })
 
 router.post("/upload", multer({dest: "./uploads/"}).array("image", 12), function(req, res) {
