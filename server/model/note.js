@@ -41,7 +41,7 @@ var NoteSchema = new mongoose.Schema({
         type: Boolean
     },
     reminder: {
-        type: Date
+        type: String
     },
     color: {
         type: String

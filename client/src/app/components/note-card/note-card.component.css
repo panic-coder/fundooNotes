@@ -102,6 +102,45 @@
 }
 
 .reminderPanel {
-    height: 40px;
+    height: 25px;
     margin-left: 10px;
+}
+
+.reminderData {
+    padding-top: 10px;
+    font-size: 10px;
+}
+
+.crossDiv {
+    float: left;
+    background-color: #e8e8e8;
+    padding: 4.5px;
+    border-radius: 0px 6px 6px 0px;
+    cursor: pointer;
+}
+
+.reminderDataDiv {
+    float: left;
+    background-color: #e8e8e8;
+    padding: 5px;
+    border-radius: 6px 0px 0px 6px;
+
+}
+
+.iconCross {
+    font-size:10px;
+}
+
+.customReminderDiv {
+    width: 300px;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #e8e8e8;
+    z-index: 1;
+}
+
+.arrowBackButton {
+    float: left;
+    padding-top: 13px;
+    cursor: pointer;
 }

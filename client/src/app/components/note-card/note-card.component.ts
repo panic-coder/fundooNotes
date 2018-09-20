@@ -3,7 +3,6 @@ import { AppService } from '../../services/app.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogOverviewExampleDialog } from '../dialog/dialog.component';
 
-
 export interface DialogData {
   animal: string;
   name: string;
@@ -34,6 +33,28 @@ export class NoteCardComponent implements OnInit {
   reminderMenu = false;
   reminderShow = false;
   reminderData;
+  customDateTimeDiv = false;
+  currentDate = "";
+  months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  reminderOption = [
+    {
+      "period":"Morning",
+      "time":"8:00 AM"
+    },
+    {
+      "period":"Afternoon",
+      "time":"1:00 PM"
+    },
+    {
+      "period":"Evening",
+      "time":"6:00 PM"
+    },
+    {
+      "period":"Night",
+      "time":"8:00 PM"
+    }
+
+  ]
   colors = [
     '#fff',
 
@@ -159,16 +180,6 @@ export class NoteCardComponent implements OnInit {
     this.reminderMenu = !this.reminderMenu;
   }
 
-  ngOnInit() {
-     if(this.data.color != null){
-      this.fillTheColor = this.data.color;
-    }
-    if(this.data.image != null){
-      this.inputImage = true;
-    }
-    
-   }
-
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '600px',
@@ -191,6 +202,46 @@ export class NoteCardComponent implements OnInit {
     console.log(date);
     this.reminderShow = true;
     this.reminderData = day+',8:00 PM'
+    this.data.reminder = this.reminderData;
+    this.updateCard();
+  }
+
+  removeReminder() {
+    this.reminderShow = false;
+    this.reminderData = '';
+    this.data.reminder = null;
+    this.updateCard();
+  }
+
+  updateCard() {
+    this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((data: any) => {
+      console.log(data);
+    })
+  }
+
+  customDataTime() {
+    this.reminderMenu = false;
+    this.customDateTimeDiv = true;
+  }
+
+  custumDivBack() {
+    this.reminderMenu = true;
+    this.customDateTimeDiv = false;
+  }
+
+  ngOnInit() {
+    if(this.data.color != null){
+     this.fillTheColor = this.data.color;
+   }
+   if(this.data.image != null){
+     this.inputImage = true;
+   }
+   if(this.data.reminder != null){
+     this.reminderShow = true;
+     this.reminderData = this.data.reminder;
+   }
+   var date = new Date();
+   this.currentDate = this.months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
   }
 
 }

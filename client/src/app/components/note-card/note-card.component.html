@@ -9,46 +9,22 @@
 
   <div class="descriptionDiv">{{data.description}}</div>
   <div class="reminderPanel">
-    <div *ngIf="reminderShow" class="reminderData" style="padding-top:20px">
-    {{reminderData}}
+    <div *ngIf="reminderShow" class="reminderData">
+      <div class="reminderDataDiv">{{reminderData}}</div>
+
+      <div class="crossDiv" (click)="removeReminder()">
+        <i class="material-icons iconCross">
+          highlight_off
+        </i>
+      </div>
+    </div>
   </div>
-</div>
   <div class="icon">
     <div class="display">
       <i class="material-icons innerIconDiv" (click)="addReminder()">
         touch_app
       </i>
-      <div *ngIf="reminderMenu" class="reminderDiv">
-        <div>
-         <p class="reminderTitle">Reminder:</p> 
-        </div>
-        <div>
-          <button mat-button class="reminderButton" (click)="laterToday('Today')">
-            Later Today
-            <div class="reminderButtonDiv">8:00 PM</div>
-          </button>
-        </div>
-        <div>
-            <button mat-button class="reminderButton" (click)="laterToday('Tomorrow')"> 
-              Tomorrow
-              <div class="reminderButtonDiv">8:00 AM</div>
-            </button>
-          </div>
-          <div>
-              <button mat-button class="reminderButton" (click)="laterToday('Mon')">
-                Next Week
-                <div class="reminderButtonDiv">Mon 8:00 PM</div>
-              </button>
-            </div>
-            <div>
-                <button mat-button class="reminderButton">
-                   <i class="material-icons" >
-                      query_builder
-                    </i>
-                    Pick date & time
-                </button>
-              </div>
-      </div>
+
       <i class="material-icons innerIconDiv" (click)="addCollaborater()">
         person_add
       </i>
@@ -60,10 +36,10 @@
           (click)="addColor(customColor)">
         </button>
       </div>
-      <i class="material-icons innerIconDiv" (click)="fileInput.click()" >
+      <i class="material-icons innerIconDiv" (click)="fileInput.click()">
         photo
       </i>
-      <input #fileInput type="file" style="display:none" (change)="onFileSelected($event)" >
+      <input #fileInput type="file" style="display:none" (change)="onFileSelected($event)">
 
       <i *ngIf="!data.isArchive" class="material-icons innerIconDiv" (click)="addArchive()">
         archive
@@ -78,6 +54,104 @@
         <button mat-menu-item>Add label</button>
       </mat-menu>
 
+    </div>
+
+  </div>
+  <div *ngIf="reminderMenu" class="reminderDiv">
+    <div>
+      <p class="reminderTitle">Reminder:</p>
+    </div>
+    <div>
+      <button mat-button class="reminderButton" (click)="laterToday('Today')">
+        Later Today
+        <div class="reminderButtonDiv">8:00 PM</div>
+      </button>
+    </div>
+    <div>
+      <button mat-button class="reminderButton" (click)="laterToday('Tomorrow')">
+        Tomorrow
+        <div class="reminderButtonDiv">8:00 AM</div>
+      </button>
+    </div>
+    <div>
+      <button mat-button class="reminderButton" (click)="laterToday('Mon')">
+        Next Week
+        <div class="reminderButtonDiv">Mon 8:00 PM</div>
+      </button>
+    </div>
+    <div>
+      <button mat-button class="reminderButton" (click)="customDataTime()">
+        <i class="material-icons">
+          query_builder
+        </i>
+        Pick date & time
+      </button>
+    </div>
+  </div>
+  <div *ngIf="customDateTimeDiv" class="customReminderDiv">
+    <div class="arrowBackButton" (click)="custumDivBack()">
+      <i class="material-icons">
+        arrow_back
+      </i>
+    </div>
+    <div style="float:left">
+      <p class="reminderTitle">Pick Date & Time:</p>
+    </div>
+    <div></div>
+    <mat-divider></mat-divider>
+    <div>
+      <mat-form-field class="reminderTitle">
+        <input matInput [matDatepicker]="picker" [(ngModel)]="currentDate" placeholder="Choose a Date">
+          
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="reminderTitle">
+        <mat-select placeholder="Select Time">
+          <!-- <mat-option value="option">
+            <div style="float: left">
+              Morning
+            </div>
+            <div style="float:right">
+              8:00 AM
+            </div>
+          </mat-option>
+          <mat-option value="option">
+            <div style="float: left">
+              Afternoon
+            </div>
+            <div style="float:right">
+              1:00 PM
+            </div>
+          </mat-option>
+          <mat-option value="option">
+            <div style="float: left">
+              Evening
+            </div>
+            <div style="float:right">
+              6:00 PM
+            </div>
+          </mat-option>
+          <mat-option value="option">
+            <div style="float: left">
+              Night
+            </div>
+            <div style="float:right">
+              8:00 PM
+            </div>
+          </mat-option> -->
+            <mat-option *ngFor="let option of reminderOption" [value]="option.time">
+                <div style="float: left">
+                    {{option.period}}
+                  </div>
+                  <div style="float:right">
+                    {{option.time}}
+                  </div>            
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
   </div>
 </mat-card>
