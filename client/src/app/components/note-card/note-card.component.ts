@@ -229,6 +229,14 @@ export class NoteCardComponent implements OnInit {
     this.customDateTimeDiv = false;
   }
 
+  reminderTimeSelect(option) {
+    console.log(option);
+    this.reminderShow = true;
+    this.reminderData = option.time;
+    this.data.reminder = this.reminderData;
+    this.updateCard();
+  }
+
   ngOnInit() {
     if(this.data.color != null){
      this.fillTheColor = this.data.color;

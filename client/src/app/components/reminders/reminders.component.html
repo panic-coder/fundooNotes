@@ -1,3 +1,3 @@
-<p>
-  reminders works!
-</p>
+<div class="reminderDiv" fxLayout="row wrap">
+  <app-note-card [ngClass]="{'card-grid': !view,'card-list': view}" [data] = data *ngFor="let data of notes" (onStatusChange)="childStatusChanged($event)"></app-note-card>
+</div>

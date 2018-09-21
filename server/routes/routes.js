@@ -339,31 +339,31 @@ router.post('/reset', function(req, res) {
       })
   })
 
-  var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './uploads')
-    },
-    filename: function (req, file, cb) {
-      console.log(file);
-      cb(null, file.fieldname + '-' + Date.now() + '-' + file.originalname)
-    }
-  })
+//   var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, './uploads')
+//     },
+//     filename: function (req, file, cb) {
+//       console.log(file);
+//       cb(null, file.fieldname + '-' + Date.now() + '-' + file.originalname)
+//     }
+//   })
    
-var upload = multer({ storage: storage }).single('image');
+// var upload = multer({ storage: storage }).single('image');
 
-router.post('/imageupload', function(req, res) {
-    console.log(`$req.body   before `);
-    upload(req, res, function (err) {
-        if (err) {
-            console.log("error");
-            res.json({                                                                                       
-                success: false,
-                msg: "Failed to upload image",
-                status_code: 500
-            })
-        }
-    })
-})
+// router.post('/imageupload', function(req, res) {
+//     console.log(`$req.body   before `);
+//     upload(req, res, function (err) {
+//         if (err) {
+//             console.log("error");
+//             res.json({                                                                                       
+//                 success: false,
+//                 msg: "Failed to upload image",
+//                 status_code: 500
+//             })
+//         }
+//     })
+// })
 
 router.post("/upload", multer({dest: "./uploads/"}).array("image", 12), function(req, res) {
     var fileInfo = [];

@@ -142,7 +142,7 @@
               8:00 PM
             </div>
           </mat-option> -->
-            <mat-option *ngFor="let option of reminderOption" [value]="option.time">
+            <mat-option *ngFor="let option of reminderOption" [value]="option.time" (click)="reminderTimeSelect(option)">
                 <div style="float: left">
                     {{option.period}}
                   </div>
