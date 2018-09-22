@@ -1,8 +1,49 @@
 .title {
     font-weight: bold;
     outline: none;
+    margin-left: 20px;
+    margin-bottom: 20px;
 }
 
 .description {
     outline: none;
+    float: left;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.image {
+    height: 80%;
+    width: 100%;
+}
+
+::ng-deep.mat-dialog-container {
+    padding: 0;
+    overflow: hidden;
+}
+
+.button {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.end {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+
+.imageDiv {
+    position:relative;
+}
+
+.imageDiv:hover .end {
+    display: block;
+}
+
+.colorIcon {
+    opacity: 0.5;
+    background-color: white
 }

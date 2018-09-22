@@ -1,8 +1,21 @@
+<div>
+      <div *ngIf="data.image != null" class="imageDiv">
+          <img [src]="data.image" class="image" />
+          <div class="end" (click)="deleteImage(data)">
+            <i class="material-icons colorIcon">
+                delete_outline
+            </i>
+          </div>
+        </div>
+        
+        
 <div mat-dialog-title contenteditable="true" class="title" #title>{{data.title}}</div>
-<div mat-dialog-actions contenteditable="true" class="description" #description>
+<div [style.background-color]="data.color">
+<div  mat-dialog-actions contenteditable="true" class="description" #description>
   {{data.description}}
 </div>
-<div mat-dialog-actions style="float: right"> 
-  <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
-  <button mat-button  [mat-dialog-close]="{'title':title,'description':description}" cdkFocusInitial>Close</button>
+<div style="float:right"> 
+  <button mat-button class="button" [mat-dialog-close]="{'title':title,'description':description}" cdkFocusInitial>Close</button>
+</div>
+</div>
 </div>

@@ -183,7 +183,8 @@ export class NoteCardComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
       width: '600px',
-      data: this.data
+      data: this.data,
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {

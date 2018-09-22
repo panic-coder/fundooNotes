@@ -132,7 +132,6 @@ router.post('/forgot', (req, res, next) => {
             
             user.save(function(err) {
                 if(err) throw err;
-                err = new Error('invalid data');
                 done(err, token, user);
             });
             })
