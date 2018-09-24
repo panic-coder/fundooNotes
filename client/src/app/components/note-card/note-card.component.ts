@@ -2,10 +2,20 @@ import { Component, OnInit, Input, ViewChild, Output, EventEmitter, Inject } fro
 import { AppService } from '../../services/app.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogOverviewExampleDialog } from '../dialog/dialog.component';
+import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  collaborators: any
+  _id
+  title
+  description
+  isPinned
+  isArchive
+  isTrash
+  reminder
+  color
+  image
+  owner
 }
 
 @Component({
@@ -34,8 +44,9 @@ export class NoteCardComponent implements OnInit {
   reminderShow = false;
   reminderData;
   customDateTimeDiv = false;
-  currentDate = "";
+  currentDate : any;
   months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  minDate = new Date();
   reminderOption = [
     {
       "period":"Morning",
@@ -198,6 +209,27 @@ export class NoteCardComponent implements OnInit {
     });
   }
 
+  openCollaboraterDialog() {
+    console.log(this.data);
+    const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
+      width: '600px',
+      data: this.data,
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result.email.innerHTML);
+      
+      // console.log('The dialog was closed : '+result.title.innerHTML);
+      // console.log("Description : "+result.description.innerHTML);
+      
+      // this.data.title = result.title.innerHTML;
+      // this.data.description = result.description.innerHTML;
+      // console.log(this.data); 
+      // this.update();
+    });
+  }
+
   laterToday(day) {
     var date = new Date();
     console.log(date);
@@ -232,8 +264,13 @@ export class NoteCardComponent implements OnInit {
 
   reminderTimeSelect(option) {
     console.log(option);
+    console.log(this.currentDate);
+    console.log(this.months[this.currentDate.getMonth()]);
+    console.log(this.currentDate.getDate());
+    var reminderCustomInput = this.months[this.currentDate.getMonth()] + ' ' + this.currentDate.getDate() + ', ' + option.time;
+    console.log(reminderCustomInput);
     this.reminderShow = true;
-    this.reminderData = option.time;
+    this.reminderData = reminderCustomInput;
     this.data.reminder = this.reminderData;
     this.updateCard();
   }

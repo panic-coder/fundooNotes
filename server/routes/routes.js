@@ -265,6 +265,7 @@ router.post('/reset', function(req, res) {
               res.json({
                   success: false,
                   msg: "Something went wrong",
+                  err: err,
                   status_code: 500
               })
           } else {
@@ -376,5 +377,32 @@ router.post("/upload", multer({dest: "./uploads/"}).array("image", 12), function
     }
     res.send(fileInfo);
 });
+
+router.post('/collabEmailSearch', function(req, res) {
+    User.findOne({"email":req.body.email}, function(err, user) {
+        if(err) {
+            res.json({
+                success:false,
+                err:err,
+                status_code: 500
+            })    
+        }
+        if(user == null){
+            res.json({
+                success:false,
+                res:"Not a registered user",
+                status_code: 404
+            })    
+        }
+        if(user != null){
+            res.json({
+                success:true,
+                data:user,
+                status_code: 200
+            })    
+        }
+        
+    })
+})
 
 module.exports = router; //Getting all the routes available in exports module

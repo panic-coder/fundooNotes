@@ -15,22 +15,10 @@ var NoteSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    // checklist:
-    //     [{
-    //         "id": {
-    //             type: ObjectId
-    //         },
-    //         "list":{
-    //             type: string
-    //         },
-    //         "done":{
-    //             type: Boolean
-    //         },
-    //         "datetime":{
-    //             type: Date
-    //         }
-    //     }]
-    // ,
+    collaborators: [{
+        name: String,
+        email: String
+    }],
     isPinned: {
         type: Boolean
     },
@@ -48,6 +36,10 @@ var NoteSchema = new mongoose.Schema({
     },
     image: {
         type: String
+    },
+    owner: {
+        name: String,
+        email: String
     }
     }, {collection: 'userNotes'}
 )

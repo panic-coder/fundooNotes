@@ -21,9 +21,9 @@ import { TrashComponent } from './components/trash/trash.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NoteCardComponent } from './components/note-card/note-card.component';
 import { IconsComponent } from './components/icons/icons.component';
-// import { DialogOverviewExampleDialog } from './components/note-card/note-card.component';
 import { DialogOverviewExampleDialog } from './components/dialog/dialog.component';
 import { DataServiceService } from './services/data-service.service';
+import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -44,9 +44,12 @@ export function tokenGetter() {
     NoteCardComponent,
     IconsComponent,
     DialogOverviewExampleDialog,
-    // DialogComponent
+    CollaboratorDialogComponent,
   ],
-  entryComponents: [DialogOverviewExampleDialog],
+  entryComponents: [
+    DialogOverviewExampleDialog,
+    CollaboratorDialogComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

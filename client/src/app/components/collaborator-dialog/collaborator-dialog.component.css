@@ -1,0 +1,12 @@
+.head {
+    font-family: 'Roboto',arial,sans-serif;
+    font-size: 18px;
+}
+
+.collabEmail {
+    outline: none
+}
+
+.owner {
+    margin-top: 10px;
+}

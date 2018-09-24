@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit, SecurityContext } from '@angular/core';
 import { AppService } from '../../services/app.service';
 import { DataServiceService } from '../../services/data-service.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 
 
@@ -19,11 +20,13 @@ export class NotesComponent implements OnInit {
   expression = false;
   value;
   pinned = false;
+  raw_data;
   constructor(private service: AppService,private data:DataServiceService) { }
 
   ngOnInit() {
     this.data.currentMessage.subscribe(message => this.view = message)
     this.readAll();
+
   }
 
   childStatusChanged(finished: boolean) {
@@ -67,6 +70,9 @@ export class NotesComponent implements OnInit {
 
 
   closeNote(title,description) {
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(localStorage.getItem('token'));
+    this.raw_data = decodedToken;
     // this.transform(description.innerHTML);
     this.value = description.innerHTML;
     console.log(this.value);
@@ -84,7 +90,12 @@ export class NotesComponent implements OnInit {
       "isTrash": false,
       "reminder":null,
       "color":null,
-      "image":null
+      "image":null,
+      "collaborators":null,
+      "owner": {
+        "name": this.raw_data.name,
+        "email": this.raw_data.email
+    }
     }
     this.expression = false;
     this.enterExpression = true;

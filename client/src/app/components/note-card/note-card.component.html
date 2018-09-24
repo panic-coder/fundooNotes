@@ -25,7 +25,7 @@
         touch_app
       </i>
 
-      <i class="material-icons innerIconDiv" (click)="addCollaborater()">
+      <i class="material-icons innerIconDiv" (click)="openCollaboraterDialog()">
         person_add
       </i>
       <i class="material-icons innerIconDiv" (click)="colorChange()">
@@ -101,8 +101,7 @@
     <mat-divider></mat-divider>
     <div>
       <mat-form-field class="reminderTitle">
-        <input matInput [matDatepicker]="picker" [(ngModel)]="currentDate" placeholder="Choose a Date">
-          
+        <input matInput [matDatepicker]="picker" [min]="minDate" [(ngModel)]="currentDate" placeholder="Choose a Date">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
@@ -110,38 +109,6 @@
     <div>
       <mat-form-field class="reminderTitle">
         <mat-select placeholder="Select Time">
-          <!-- <mat-option value="option">
-            <div style="float: left">
-              Morning
-            </div>
-            <div style="float:right">
-              8:00 AM
-            </div>
-          </mat-option>
-          <mat-option value="option">
-            <div style="float: left">
-              Afternoon
-            </div>
-            <div style="float:right">
-              1:00 PM
-            </div>
-          </mat-option>
-          <mat-option value="option">
-            <div style="float: left">
-              Evening
-            </div>
-            <div style="float:right">
-              6:00 PM
-            </div>
-          </mat-option>
-          <mat-option value="option">
-            <div style="float: left">
-              Night
-            </div>
-            <div style="float:right">
-              8:00 PM
-            </div>
-          </mat-option> -->
             <mat-option *ngFor="let option of reminderOption" [value]="option.time" (click)="reminderTimeSelect(option)">
                 <div style="float: left">
                     {{option.period}}

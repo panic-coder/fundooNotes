@@ -23,7 +23,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     const helper = new JwtHelperService();
-
     const decodedToken = helper.decodeToken(localStorage.getItem('token'));
     this.raw_data = decodedToken;
     localStorage.setItem('name',this.raw_data.name);

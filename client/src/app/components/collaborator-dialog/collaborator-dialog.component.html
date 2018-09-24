@@ -1,0 +1,28 @@
+<div>
+  <h3 class="head">
+    Collaborators
+  </h3>
+</div>
+<mat-divider></mat-divider>
+<div>
+<div class="owner">
+    {{data.owner.name}}
+</div>
+<div>
+    {{data.owner.email}}
+</div>
+</div>
+<div *ngFor="let item of data.collaborators">
+  <div>
+    {{item.name}}
+  </div>
+  <div>
+    {{item.email}}
+  </div>
+
+</div>
+<div contenteditable="true" #newEmail class="collabEmail">
+
+</div>
+<button mat-button (click)="verifyUser(newEmail)">Add User</button>
+<button mat-button [mat-dialog-close]="{'email':newEmail}">Close</button>
