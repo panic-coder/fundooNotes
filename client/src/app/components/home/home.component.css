@@ -47,7 +47,6 @@
 
 .sidenav {
   width: 265px;
-  
 }
 
 .icon {
@@ -61,7 +60,7 @@
   border: none;
   margin-left: 20px;
   outline: transparent;
-  width: 616px;
+  width: 84%;
   height: 46px;
   border-radius: 5px;
   background: transparent;
@@ -103,7 +102,7 @@
 }
 
 .afterSearchButton {
-  margin-left: 20px;
+  margin-left: 15px;
   margin-top: 9px;
   padding: 5px;
   cursor: pointer;
@@ -124,7 +123,7 @@
   margin-left: 25px;
   background: rgba(0, 0, 0, 0.04);
   border: solid rgba(0, 0,0, 0);
-  width: 720px;
+  width: 60%;
   height: 46px;
   text-decoration-color: black;
   border-radius: 5px;

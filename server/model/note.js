@@ -46,6 +46,11 @@ var NoteSchema = new mongoose.Schema({
 
 var Note = module.exports = mongoose.model('userNotes', NoteSchema);
 
+/**
+ * @description Saving of notes
+ * @param {*} note 
+ * @param {*} callback 
+ */
 module.exports.createNote = (note, callback) => {
     var id = mongoose.Types.ObjectId(note.noteId);
     note.noteId = id;

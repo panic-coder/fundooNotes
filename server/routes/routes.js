@@ -11,6 +11,9 @@ var jwt = require('jsonwebtoken');
 var multer = require('multer');
 var fs = require('fs');
 
+/**
+ * @description API for registration
+ */
 router.post('/register', (req, res) => {
     var newUser = new User({
         name: req.body.name,
@@ -36,6 +39,9 @@ router.post('/register', (req, res) => {
     })
 })
 
+/**
+ * @description API for Login
+ */
 router.post('/login', (req,res) => {
     User.findOne({
         "email":req.body.email
@@ -89,6 +95,9 @@ router.post('/login', (req,res) => {
         })
 })
 
+/**
+ * @description API for forgot password
+ */
 router.post('/forgot', (req, res, next) => {
     var email = req.body.email;
     console.log(email);
@@ -174,6 +183,9 @@ router.post('/forgot', (req, res, next) => {
       });
 })
 
+/**
+ * @description API for reset password
+ */
 router.post('/reset', function(req, res) {
     async.waterfall([
       function(done) {
@@ -257,6 +269,9 @@ router.post('/reset', function(req, res) {
     });
   });
 
+/**
+ * @description API for saving of notes
+ */
   router.post('/savenote', function(req, res) {
     //   console.log(req.body);
       var newNote = new Note(req.body)
@@ -279,6 +294,9 @@ router.post('/reset', function(req, res) {
       
   })
 
+  /**
+ * @description API for updation of a note
+ */
   router.put('/updatenote/:id', function(req, res) {
     Note.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, note) => {
         // console.log(req.body);
@@ -302,6 +320,9 @@ router.post('/reset', function(req, res) {
     })
   })
 
+/**
+ * @description API for deletion of a note
+ */
   router.delete('/deletenote/:id', function(req, res) {
       Note.findByIdAndRemove(req.params.id, (err, note) => {
           if(err){
@@ -319,7 +340,9 @@ router.post('/reset', function(req, res) {
           })
       })
   })
-
+/**
+ * @description API for reading of notes from database
+ */
   router.get('/readnote/:note_id', function(req, res) {
     var id = mongoose.Types.ObjectId(req.params.note_id);
       Note.find({"userId": id}, (err, notes) => {
@@ -339,32 +362,9 @@ router.post('/reset', function(req, res) {
       })
   })
 
-//   var storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, './uploads')
-//     },
-//     filename: function (req, file, cb) {
-//       console.log(file);
-//       cb(null, file.fieldname + '-' + Date.now() + '-' + file.originalname)
-//     }
-//   })
-   
-// var upload = multer({ storage: storage }).single('image');
-
-// router.post('/imageupload', function(req, res) {
-//     console.log(`$req.body   before `);
-//     upload(req, res, function (err) {
-//         if (err) {
-//             console.log("error");
-//             res.json({                                                                                       
-//                 success: false,
-//                 msg: "Failed to upload image",
-//                 status_code: 500
-//             })
-//         }
-//     })
-// })
-
+/**
+ * @description API for uploading image
+ */
 router.post("/upload", multer({dest: "./uploads/"}).array("image", 12), function(req, res) {
     var fileInfo = [];
     for(var i = 0; i < req.files.length; i++) {
@@ -378,6 +378,9 @@ router.post("/upload", multer({dest: "./uploads/"}).array("image", 12), function
     res.send(fileInfo);
 });
 
+/**
+ * @description API for searching email and checking if the user is registered or not for adding before collaboration
+ */
 router.post('/collabEmailSearch', function(req, res) {
     User.findOne({"email":req.body.email}, function(err, user) {
         if(err) {
@@ -405,4 +408,7 @@ router.post('/collabEmailSearch', function(req, res) {
     })
 })
 
-module.exports = router; //Getting all the routes available in exports module
+/**
+ * @description Getting all the routes available in exports module
+ */
+module.exports = router; 

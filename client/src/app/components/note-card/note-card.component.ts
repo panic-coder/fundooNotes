@@ -5,7 +5,7 @@ import { DialogOverviewExampleDialog } from '../dialog/dialog.component';
 import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
 
 export interface DialogData {
-  collaborators: any
+  collaborators
   _id
   title
   description

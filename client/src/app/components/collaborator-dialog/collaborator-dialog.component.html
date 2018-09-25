@@ -6,23 +6,27 @@
 <mat-divider></mat-divider>
 <div>
 <div class="owner">
-    {{data.owner.name}}
+    {{data.owner.name}} (owner)
 </div>
-<div>
+<div class="ownerEmail">
     {{data.owner.email}}
 </div>
 </div>
+<mat-divider></mat-divider>
+
 <div *ngFor="let item of data.collaborators">
-  <div>
+  <div class="collab">
     {{item.name}}
   </div>
-  <div>
+  <div class="collabEmail">
     {{item.email}}
   </div>
+  <mat-divider></mat-divider>
+</div>
+
+<div data-placeholder="Enter Email" contenteditable="true" #newEmail class="collabEmail">
 
 </div>
-<div contenteditable="true" #newEmail class="collabEmail">
 
-</div>
 <button mat-button (click)="verifyUser(newEmail)">Add User</button>
 <button mat-button [mat-dialog-close]="{'email':newEmail}">Close</button>

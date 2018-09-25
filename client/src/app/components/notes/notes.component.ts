@@ -91,7 +91,7 @@ export class NotesComponent implements OnInit {
       "reminder":null,
       "color":null,
       "image":null,
-      "collaborators":null,
+      "collaborators":[],
       "owner": {
         "name": this.raw_data.name,
         "email": this.raw_data.email

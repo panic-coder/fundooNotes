@@ -27,13 +27,19 @@ export class CollaboratorDialogComponent implements OnInit {
       console.log({"email": newUserEmail.innerHTML});
       
       this.service.postRequest({"email": newUserEmail.innerHTML},'collabEmailSearch').subscribe((resData:any) => {
-        console.log(resData);
+        console.log(resData.data);
         console.log(this.data);
         if(resData.success){
+          console.log(resData.data.name);
+          console.log(newUserEmail.innerHTML);
+          console.log(this.data.collaborators);
+          
           this.data.collaborators.push({
             "name":resData.data.name,
             "email":newUserEmail.innerHTML
           });
+          console.log(this.data.collaborators);
+          
           this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((updateResponse: any) => {
             console.log(updateResponse);
             console.log(this.data.collaborators);
@@ -56,6 +62,8 @@ export class CollaboratorDialogComponent implements OnInit {
               console.log(colabResponse);
             })
         })
+        } else {
+          alert('Not a registered user')
         }
       })
     }
