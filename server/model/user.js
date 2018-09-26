@@ -27,6 +27,9 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    label: [{
+        name: String
+    }],
     resetPasswordToken: String,
     resetPasswordExpires: Date
 }, {collection: 'userInfo'})

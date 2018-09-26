@@ -96,14 +96,36 @@
         <a mat-list-item routerLink="." (click) = "notes()"><img class="icon" src="../../../assets/images/note.svg" alt=""><span class="description">Notes</span> </a>
         <a mat-list-item routerLink="." (click) = "reminders()"><img class="icon" src="../../../assets/images/reminder.svg" ><span class="description">Reminders</span> </a>
         <mat-divider></mat-divider>
-        <div class="labelDiv"><span  class="label label1">Labels</span> <span class="label label2">EDIT</span> </div>
-        <a mat-list-item routerLink="." ><i class="material-icons icon">add</i><span class="description">Create new label</span> </a>
-
+        <div class="top">
+        <div>
+          <div  class="label1">Labels</div> 
+          <div>
+            <div class="label2">
+                <button mat-button (click)="labelEdit()">
+                    EDIT
+                </button>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="labelsEnter" *ngFor="let item of labels" (click)="customLabel(item)">
+          {{item}}
+        </div>
+        <div class="createDiv">
+            <a mat-list-item routerLink="." >
+          <div>
+            <i class="material-icons icon">
+              add
+            </i>
+          </div>
+          <div class="createLabel1">
+              Create new label
+          </div> 
+        </a>
+        </div>
         <mat-divider></mat-divider>
-
         <a mat-list-item routerLink="." (click) = "archive()"><i class="material-icons icon">archive</i><span class="description">Archive</span> </a>
         <a mat-list-item routerLink="." (click) = "trash()"><img class="icon" src="../../../assets/images/trash.svg" alt=""><span class="description">Trash</span> </a>
-        <!-- <a mat-list-item routerLink="." (click) = "setting()">Reminders</a> -->
       </mat-nav-list>
     </mat-sidenav>
   <mat-sidenav-content>

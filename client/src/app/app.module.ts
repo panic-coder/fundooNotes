@@ -24,6 +24,7 @@ import { IconsComponent } from './components/icons/icons.component';
 import { DialogOverviewExampleDialog } from './components/dialog/dialog.component';
 import { DataServiceService } from './services/data-service.service';
 import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
+import { CreateLabelDialogComponent } from './components/create-label-dialog/create-label-dialog.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -45,10 +46,12 @@ export function tokenGetter() {
     IconsComponent,
     DialogOverviewExampleDialog,
     CollaboratorDialogComponent,
+    CreateLabelDialogComponent,
   ],
   entryComponents: [
     DialogOverviewExampleDialog,
-    CollaboratorDialogComponent
+    CollaboratorDialogComponent,
+    CreateLabelDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { DataServiceService } from '../../services/data-service.service';
+import { CreateLabelDialogComponent } from '../create-label-dialog/create-label-dialog.component';
+import { MatDialog } from '@angular/material';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { DataServiceService } from '../../services/data-service.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private data: DataServiceService) { }
+  constructor(private router: Router, private data: DataServiceService, public dialog: MatDialog) { }
 
   raw_data
   firstCharacter = '';
@@ -20,6 +22,7 @@ export class HomeComponent implements OnInit {
   sign = false;
   shiftDiv = false;
   view=false;
+  labels = ['work','home','insta']
 
   ngOnInit() {
     const helper = new JwtHelperService();
@@ -76,13 +79,27 @@ export class HomeComponent implements OnInit {
     } else {
       this.sign = true;
     }
-    
     this.name =  this.raw_data.name;
     this.email = this.raw_data.email;
-  }
+  } 
 
-  appClick() {
-    
+  labelEdit() {
+    console.log('edit label');
+      console.log(this.data);
+      const dialogRef = this.dialog.open(CreateLabelDialogComponent, {
+        width: '300px',
+        data: this.data,
+        disableClose: true
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+      });
+    }
+  
+
+  customLabel(item) {
+    console.log(item);
   }
 
   shift(){
@@ -91,8 +108,6 @@ export class HomeComponent implements OnInit {
     } else {
       this.shiftDiv = true;
     }
-    // console.log(this.shiftDiv);
-    
   }
 
   toggleView(){
