@@ -1,0 +1,17 @@
+.labelButton {
+    float: right;
+}
+
+.name {
+    font-family: 'Roboto',arial,sans-serif;
+    font-size: 18px;
+}
+
+.labelData {
+    outline: none;
+    
+}
+
+.icon {
+    float: right;
+}

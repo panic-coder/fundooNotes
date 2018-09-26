@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
     var user = localStorage.getItem('name');
     this.firstCharacter = user[0];
     console.log(this.data);
-    
     this.data.currentMessage.subscribe(message => this.view=message);
 
   }
