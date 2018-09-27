@@ -3,18 +3,20 @@
     <h3 class="name">Edit Labels</h3>
   </div>
   <div>
-      <div data-placeholder="Enter Email" contenteditable="true" #newEmail class="labelData">
-          
-        </div>
-        <div class="icon">
-            <i class="material-icons">
-                done
-                </i>
-        </div>
-       
+    <div class="delete">
+        <i class="material-icons">
+            delete
+            </i>
+    </div>
+     <input class="input" type="text" placeholder="Create a label" maxlength="50" #newLabel>
+    <div>
+        <i class="material-icons done">
+            done
+            </i>
+    </div>
   </div>
   
-  <mat-divider></mat-divider>
+  <mat-divider class="divider"></mat-divider>
 <div>
-  <button mat-button class="labelButton">DONE</button>
+  <button mat-button class="labelButton" [mat-dialog-close]="{'email':newLabel.value}">DONE</button>
 </div>

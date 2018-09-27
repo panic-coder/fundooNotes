@@ -295,7 +295,8 @@ router.post('/reset', function(req, res) {
       
   })
 
-  /**
+
+/**
  * @description API for updation of a note
  */
   router.put('/updatenote/:id', function(req, res) {
@@ -408,6 +409,45 @@ router.post('/collabEmailSearch', function(req, res) {
         
     })
 })
+
+  /**
+ * @description API for updation of a note
+ */
+router.put('/updateuser/:id', function(req, res) {
+    
+        var ObjectId = (require('mongoose').Types.ObjectId);
+        // return new ObjectId(this.toString());
+    
+      
+    var id = req.params.id
+    console.log(id);
+    
+
+    var query = {'_id': new ObjectId(id)}
+
+
+    User.findOne(query, (err, userData) => {
+        // console.log(req.body);
+        //  console.log(req.params.id);
+
+        if(err){
+            res.json({
+                success: false,
+                msg: "Something went wrong",
+                status_code: 500
+            })
+        }
+        // console.log(note);
+        userData.label = req.body.label ;
+        userData.save();
+        res.json({
+            success: true,
+            msg: "Successfully updated",
+            data: userData,
+            status_code: 200
+        })
+    })
+  })
 
 /**
  * @description Getting all the routes available in exports module

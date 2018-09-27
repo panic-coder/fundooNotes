@@ -108,8 +108,10 @@
           </div>
         </div>
       </div>
-        <div class="labelsEnter" *ngFor="let item of labels" (click)="customLabel(item)">
-          {{item}}
+        <div class="labelsEnter" *ngFor="let item of label" >
+          <a mat-list-item routerLink="."(click)="customLabel(item)">
+              {{item}}
+          </a>
         </div>
         <div class="createDiv">
             <a mat-list-item routerLink="." >

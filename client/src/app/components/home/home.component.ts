@@ -4,6 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { DataServiceService } from '../../services/data-service.service';
 import { CreateLabelDialogComponent } from '../create-label-dialog/create-label-dialog.component';
 import { MatDialog } from '@angular/material';
+import { AppService } from '../../services/app.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { MatDialog } from '@angular/material';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private data: DataServiceService, public dialog: MatDialog) { }
+  constructor(private router: Router, private data: DataServiceService, public dialog: MatDialog, private service: AppService) { }
 
   raw_data
   firstCharacter = '';
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
   sign = false;
   shiftDiv = false;
   view=false;
-  labels = ['work','home','insta']
+  label = []
 
   ngOnInit() {
     const helper = new JwtHelperService();
@@ -34,7 +35,10 @@ export class HomeComponent implements OnInit {
     this.firstCharacter = user[0];
     console.log(this.data);
     this.data.currentMessage.subscribe(message => this.view=message);
-
+    this.raw_data.label.forEach(element => {
+      this.label.push(element.name);
+    });
+    console.log(this.label);
   }
 
   name1 = "Google"
@@ -92,7 +96,16 @@ export class HomeComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log(result);
+        console.log(result.email);
+        this.label.push({
+          "name":result.email
+        })
+        console.log(this.label);
+        
+        this.service.updateRequest('updateuser', localStorage.getItem('id'), this.label).subscribe((data:any) => {
+          console.log(data);
+          
+        })
       });
     }
   

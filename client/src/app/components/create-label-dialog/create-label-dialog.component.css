@@ -7,11 +7,23 @@
     font-size: 18px;
 }
 
-.labelData {
-    outline: none;
-    
+.delete {
+    float: left;
 }
 
-.icon {
+.done {
     float: right;
+}
+
+.input {
+    margin-left: 8px;
+    float: left;
+    outline: none;
+    border: none;
+
+}
+
+.divider {
+    margin-top: 30%;
+    padding: 15px;
 }
