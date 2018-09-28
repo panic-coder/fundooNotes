@@ -7,23 +7,17 @@
     font-size: 18px;
 }
 
-.delete {
-    float: left;
-}
-
-.done {
-    float: right;
-}
-
 .input {
     margin-left: 8px;
     float: left;
     outline: none;
     border: none;
-
 }
 
 .divider {
-    margin-top: 30%;
-    padding: 15px;
+    padding: 5px;
+}
+
+.label {
+    padding: 5px;
 }

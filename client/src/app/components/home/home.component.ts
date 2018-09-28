@@ -5,7 +5,7 @@ import { DataServiceService } from '../../services/data-service.service';
 import { CreateLabelDialogComponent } from '../create-label-dialog/create-label-dialog.component';
 import { MatDialog } from '@angular/material';
 import { AppService } from '../../services/app.service';
-
+import { syntaxError } from '@angular/compiler';
 
 @Component({
   selector: 'home',
@@ -23,12 +23,14 @@ export class HomeComponent implements OnInit {
   sign = false;
   shiftDiv = false;
   view=false;
-  label = []
+  label = [];
+  labels = [];
 
   ngOnInit() {
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(localStorage.getItem('token'));
     this.raw_data = decodedToken;
+    console.log(this.raw_data);
     localStorage.setItem('name',this.raw_data.name);
     localStorage.setItem('id',this.raw_data.data);
     var user = localStorage.getItem('name');
@@ -36,9 +38,8 @@ export class HomeComponent implements OnInit {
     console.log(this.data);
     this.data.currentMessage.subscribe(message => this.view=message);
     this.raw_data.label.forEach(element => {
-      this.label.push(element.name);
+      this.labels.push(element.name);
     });
-    console.log(this.label);
   }
 
   name1 = "Google"
@@ -91,14 +92,19 @@ export class HomeComponent implements OnInit {
       console.log(this.data);
       const dialogRef = this.dialog.open(CreateLabelDialogComponent, {
         width: '300px',
-        data: this.data,
+        data: this.labels,
         disableClose: true
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log(result.email);
+        console.log(result.labelName);
+        this.labels.forEach(element => {
+          this.label.push({
+            "name":element
+          })  
+        });
         this.label.push({
-          "name":result.email
+          "name":result.labelName
         })
         console.log(this.label);
         

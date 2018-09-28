@@ -75,7 +75,7 @@ router.post('/login', (req,res) => {
                             data: doc._id,
                             name: doc.name,
                             email: doc.email,
-                            label: doc.label
+                            label: doc.label,
                           }, 'secret', { expiresIn: '24h' })
                         res.json({
                             success: true,
@@ -417,19 +417,15 @@ router.put('/updateuser/:id', function(req, res) {
     
         var ObjectId = (require('mongoose').Types.ObjectId);
         // return new ObjectId(this.toString());
-    
-      
     var id = req.params.id
-    console.log(id);
+    // console.log(id);
+    console.log(req.body);
     
-
     var query = {'_id': new ObjectId(id)}
-
 
     User.findOne(query, (err, userData) => {
         // console.log(req.body);
         //  console.log(req.params.id);
-
         if(err){
             res.json({
                 success: false,
@@ -438,7 +434,7 @@ router.put('/updateuser/:id', function(req, res) {
             })
         }
         // console.log(note);
-        userData.label = req.body.label ;
+        userData.label = req.body ;
         userData.save();
         res.json({
             success: true,
