@@ -2,28 +2,42 @@
   <div>
     <h3 class="name">Edit Labels</h3>
   </div>
-  <div fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
     <div>
         <i class="material-icons">
-            delete
+            clear
             </i>
     </div>
     <div>
       <input class="input" type="text" placeholder="Create a label" maxlength="50" #newLabel>
     </div>
-    <div>
+    <div (click)="addLabel(newLabel.value)">
         <i class="material-icons">
             done
         </i>
     </div>
   </div>
   <div>
-    <div class="label" *ngFor="let item of data ">
-      {{item}}
+    <div fxLayout="row" fxLayoutAlign="space-between center" *ngFor="let item of labelData ">
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div (click)="deleteLabel(item)">
+              <i class="material-icons">
+                  delete
+                  </i>
+          </div>
+          <div class="labelNameEdit" contenteditable="true" #edit>
+              {{item}}
+          </div>
+      </div>
+    <div (click)="editLabel(item, edit)">
+        <i class="material-icons">
+            done
+        </i>
     </div>
   </div>
+    </div>
   <mat-divider class="divider"></mat-divider>
 <div>
-  <button mat-button class="labelButton" [mat-dialog-close]="{'labelName':newLabel.value}">DONE</button>
+  <button mat-button class="labelButton" [mat-dialog-close]="labelData">DONE</button>
 </div>
 </div>

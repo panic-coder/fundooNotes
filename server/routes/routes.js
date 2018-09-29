@@ -415,12 +415,8 @@ router.post('/collabEmailSearch', function(req, res) {
  */
 router.put('/updateuser/:id', function(req, res) {
     
-        var ObjectId = (require('mongoose').Types.ObjectId);
-        // return new ObjectId(this.toString());
+    var ObjectId = (require('mongoose').Types.ObjectId);
     var id = req.params.id
-    // console.log(id);
-    console.log(req.body);
-    
     var query = {'_id': new ObjectId(id)}
 
     User.findOne(query, (err, userData) => {
@@ -440,6 +436,28 @@ router.put('/updateuser/:id', function(req, res) {
             success: true,
             msg: "Successfully updated",
             data: userData,
+            status_code: 200
+        })
+    })
+  })
+
+  router.get('/getLabels/:id', function(req, res) {
+    var ObjectId = (require('mongoose').Types.ObjectId);
+    var id = req.params.id
+    var query = {'_id': new ObjectId(id)}
+    User.findOne(query, (err,userData) => {
+        if(err) {
+            res.json({
+                success: false,
+                msg: "Something went wrong",
+                status_code: 500
+            })
+        }
+
+        res.json({
+            success: true,
+            msg: "Successfully read label",
+            label: userData.label ,
             status_code: 200
         })
     })

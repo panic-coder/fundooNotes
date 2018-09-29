@@ -37,9 +37,17 @@ export class HomeComponent implements OnInit {
     this.firstCharacter = user[0];
     console.log(this.data);
     this.data.currentMessage.subscribe(message => this.view=message);
-    this.raw_data.label.forEach(element => {
-      this.labels.push(element.name);
-    });
+    this.service.getRequest('getLabels').subscribe((data: any) => {
+      console.log(data);
+      data.label.forEach(element => {
+        this.labels.push(element.name);  
+      });
+      
+      
+    })
+    // this.raw_data.label.forEach(element => {
+    //   this.labels.push(element.name);
+    // });
   }
 
   name1 = "Google"
@@ -88,7 +96,6 @@ export class HomeComponent implements OnInit {
   } 
 
   labelEdit() {
-    console.log('edit label');
       console.log(this.data);
       const dialogRef = this.dialog.open(CreateLabelDialogComponent, {
         width: '300px',
@@ -97,20 +104,19 @@ export class HomeComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log(result.labelName);
+        console.log(result);
+        this.label = [];
         this.labels.forEach(element => {
           this.label.push({
             "name":element
           })  
         });
-        this.label.push({
-          "name":result.labelName
-        })
+        // this.label.push({
+        //   "name":result.labelName
+        // })
         console.log(this.label);
-        
         this.service.updateRequest('updateuser', localStorage.getItem('id'), this.label).subscribe((data:any) => {
           console.log(data);
-          
         })
       });
     }
