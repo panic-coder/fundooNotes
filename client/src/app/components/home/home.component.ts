@@ -121,9 +121,11 @@ export class HomeComponent implements OnInit {
       });
     }
   
-
   customLabel(item) {
     console.log(item);
+    // this.name1 = "Label"
+    // this.name2 = ""
+    this.router.navigate(['home/label']);
   }
 
   shift(){

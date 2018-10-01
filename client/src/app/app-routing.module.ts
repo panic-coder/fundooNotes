@@ -10,6 +10,7 @@ import { NotesComponent } from './components/notes/notes.component';
 import { RemindersComponent } from './components/reminders/reminders.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
+import { LabelComponent } from './components/label/label.component';
 import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
     { path: 'notes', component: NotesComponent, canActivate:[AuthGuard]},
     { path: 'reminders', component: RemindersComponent, canActivate:[AuthGuard]},
     { path: 'archive', component: ArchiveComponent, canActivate:[AuthGuard]},
-    { path: 'trash', component: TrashComponent, canActivate:[AuthGuard]}
+    { path: 'trash', component: TrashComponent, canActivate:[AuthGuard]},
+    { path: 'label', component: LabelComponent, canActivate:[AuthGuard]}
   ]},
   { path: '**', redirectTo: '' }
 ]

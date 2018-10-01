@@ -1,7 +1,7 @@
 <div fxFlex >
 <div fxLayout="column wrap" class="container">
   <mat-toolbar class="toolbar">
-    <button class="menu" mat-icon-button (click)="snav.toggle()" (click)="shift()"><mat-icon>menu</mat-icon></button>
+    <button class="menu" mat-icon-button (click)="snav.toggle()" ><mat-icon>menu</mat-icon></button>
     <span class="app-name1">{{name1}}</span>
     <span class="app-name2">{{name2}}</span>
     <div class="firstDiv">
@@ -84,11 +84,9 @@
         </div>  
   </div>
    
-    
   </mat-card>
      
   </mat-toolbar>
- 
 
   <mat-sidenav-container class="sidenav-container" hasBackdrop="false">
     <mat-sidenav #snav class="sidenav">

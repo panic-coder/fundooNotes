@@ -120,7 +120,7 @@
   margin-left: 25px;
   background: rgba(0, 0, 0, 0.04);
   border: solid rgba(0, 0,0, 0);
-  width: 60%;
+  width: 700px;
   height: 46px;
   text-decoration-color: black;
   border-radius: 5px;
@@ -228,7 +228,7 @@
 }
 
 .labelsEnter {
-  margin: 2%;
+  /* margin: 2%; */
 }
 
 .top {
