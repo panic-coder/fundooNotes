@@ -463,6 +463,48 @@ router.put('/updateuser/:id', function(req, res) {
     })
   })
 
+  router.post('/deletecollab', function(req, res) {
+      console.log(req.body);
+      User.find(req.body, function(err, doc) {
+        if(err) {
+            res.json({
+                success: false,
+                success_code: 500
+            })
+        }
+
+        Note.find({"userId":doc[0]._id}, function(err, docChat) {
+            if(err) {
+                res.json({
+                    success: false,
+                    success_code: 500
+                })  
+            }
+            docChat.forEach(element => {
+                if(element.collaborators != null){
+                    element.collaborators.forEach(elementCollab => {
+                        if(elementCollab.email == req.body.email){
+                            res.json({
+                                success: true,
+                                success_code: 200,
+                                doc: element
+                            })
+                        }
+                    })
+                }
+            });
+            // res.json({
+            //     success: true,
+            //     success_code: 200,
+            //     doc: docChat    
+            //   })
+
+        })
+
+        
+      })
+  })
+
 /**
  * @description Getting all the routes available in exports module
  */

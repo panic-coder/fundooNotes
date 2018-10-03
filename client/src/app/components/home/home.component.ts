@@ -38,12 +38,9 @@ export class HomeComponent implements OnInit {
     console.log(this.data);
     this.data.currentMessage.subscribe(message => this.view=message);
     this.service.getRequest('getLabels').subscribe((data: any) => {
-      console.log(data);
       data.label.forEach(element => {
         this.labels.push(element.name);  
       });
-      
-      
     })
     // this.raw_data.label.forEach(element => {
     //   this.labels.push(element.name);
@@ -122,10 +119,10 @@ export class HomeComponent implements OnInit {
     }
   
   customLabel(item) {
-    console.log(item);
     // this.name1 = "Label"
     // this.name2 = ""
-    this.router.navigate(['home/label']);
+    this.data.labelName(item);
+    this.router.navigate(['home','label',item]);
   }
 
   shift(){

@@ -11,12 +11,19 @@
   <div class="reminderPanel">
     <div *ngIf="reminderShow" class="reminderData">
       <div class="reminderDataDiv">{{reminderData}}</div>
-
       <div class="crossDiv" (click)="removeReminder()">
         <i class="material-icons iconCross">
           highlight_off
         </i>
       </div>
+    </div>
+    <div *ngIf="collabShow" class="collabData">
+      <div *ngFor="let item of data.collaborators" class="collabDiv">
+        <div class="innerDivCollab">
+            {{item.name[0]}}
+        </div>
+      </div>
+      
     </div>
   </div>
   <div class="icon">
@@ -48,13 +55,13 @@
         unarchive
       </i>
 
-      <mat-icon class="innerIconDiv" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+      <mat-icon class="innerIconDiv" [matMenuTriggerFor]="menu" (click)="readLabel()">more_vert</mat-icon>
       <mat-menu #menu="matMenu" style="position: absolute">
         <button mat-menu-item (click)="trash(data)">Delete</button>
         <button mat-menu-item [matMenuTriggerFor]="labelMenu">Add label</button>
       </mat-menu>
       <mat-menu #labelMenu="matMenu"> 
-        <button mat-menu-item>-</button>
+        <button mat-menu-item *ngFor="let item of labels" (click)="addLabel(item)">{{item}}</button>
       </mat-menu>
 
     </div>

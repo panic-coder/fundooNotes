@@ -18,7 +18,6 @@ export class ArchiveComponent implements OnInit {
 
   ngOnInit() {
     this.data.currentMessage.subscribe(message => this.view = message)
-
     this.readAll();
   }
 

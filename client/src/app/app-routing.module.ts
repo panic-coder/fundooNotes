@@ -23,7 +23,7 @@ const routes: Routes = [
     { path: 'reminders', component: RemindersComponent, canActivate:[AuthGuard]},
     { path: 'archive', component: ArchiveComponent, canActivate:[AuthGuard]},
     { path: 'trash', component: TrashComponent, canActivate:[AuthGuard]},
-    { path: 'label', component: LabelComponent, canActivate:[AuthGuard]}
+    { path: 'label/:labelName', component: LabelComponent, canActivate:[AuthGuard]}
   ]},
   { path: '**', redirectTo: '' }
 ]

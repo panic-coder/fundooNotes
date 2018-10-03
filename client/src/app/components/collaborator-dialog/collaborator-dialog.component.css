@@ -22,3 +22,8 @@
 .ownerEmail {
     margin-bottom: 10px;
 }
+
+.collabRemoveIcon {
+    float: right;
+    cursor: pointer;
+}

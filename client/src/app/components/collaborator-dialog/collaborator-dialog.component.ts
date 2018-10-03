@@ -68,6 +68,17 @@ export class CollaboratorDialogComponent implements OnInit {
       })
     }
 
+    deleteCollab(email) {
+      console.log(email);
+      var index;
+      index = this.data.collaborators.findIndex(item => item.email == email)
+      this.data.collaborators.splice(index,1);
+      console.log(this.data.collaborators);
+      this.service.postRequest({"email":email},'deletecollab').subscribe((response: any) => {
+        console.log(response);
+      })
+    }
+
   ngOnInit() {
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(localStorage.getItem('token'));

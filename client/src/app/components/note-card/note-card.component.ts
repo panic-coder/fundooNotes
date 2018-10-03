@@ -45,6 +45,8 @@ export class NoteCardComponent implements OnInit {
   reminderData;
   customDateTimeDiv = false;
   currentDate : any;
+  labels = [];
+  collabShow = false;
   months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   minDate = new Date();
   reminderOption = [
@@ -275,6 +277,39 @@ export class NoteCardComponent implements OnInit {
     this.updateCard();
   }
 
+  readLabel() {
+    this.labels = [];
+    this.service.getRequest('getLabels').subscribe((data: any) => {
+      data.label.forEach(element => {
+        this.labels.push(element.name);  
+      });
+    })
+  }
+
+  addLabel(labelName) {
+    console.log(labelName);
+    console.log(this.data);
+    var index = -1;
+    var count = -1
+    this.data.labels.forEach(element => {
+      count++;
+      if(element.name == labelName) {
+        index = count;
+      }
+    });
+
+    console.log(index);
+    
+    if(index == -1){
+      this.data.labels.push({
+        "name":labelName
+      })
+    } else {
+      this.data.labels.splice(index, 1)
+    }
+    this.updateCard();
+  }
+
   ngOnInit() {
     if(this.data.color != null){
      this.fillTheColor = this.data.color;
@@ -285,6 +320,9 @@ export class NoteCardComponent implements OnInit {
    if(this.data.reminder != null){
      this.reminderShow = true;
      this.reminderData = this.data.reminder;
+   }
+   if(this.data.collaborators != null) {
+     this.collabShow = true;
    }
    var date = new Date();
    this.currentDate = this.months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();

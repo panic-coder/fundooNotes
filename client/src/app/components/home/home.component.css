@@ -234,3 +234,7 @@
 .top {
   height:40px;
 }
+
+::ng-deep .mat-drawer-content {
+  overflow: overlay !important;
+}

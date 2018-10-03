@@ -19,6 +19,9 @@ var NoteSchema = new mongoose.Schema({
         name: String,
         email: String
     }],
+    labels:[{
+        name: String
+    }],
     isPinned: {
         type: Boolean
     },

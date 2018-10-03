@@ -26,7 +26,6 @@ export class NotesComponent implements OnInit {
   ngOnInit() {
     this.data.currentMessage.subscribe(message => this.view = message)
     this.readAll();
-
   }
 
   childStatusChanged(finished: boolean) {
@@ -67,7 +66,6 @@ export class NotesComponent implements OnInit {
 // transform(v:string):SafeHtml {
 //   return this.sanitizer.bypassSecurityTrustHtml(v);
 // }
-
 
   closeNote(title,description) {
     const helper = new JwtHelperService();

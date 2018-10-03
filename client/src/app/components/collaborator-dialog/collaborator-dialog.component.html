@@ -18,8 +18,16 @@
   <div class="collab">
     {{item.name}}
   </div>
-  <div class="collabEmail">
-    {{item.email}}
+  <div>
+      <div class="collabEmail">
+          {{item.email}}
+        <i class="material-icons collabRemoveIcon" (click)="deleteCollab(item.email)">
+              close
+        </i>
+      </div>
+        
+        
+        
   </div>
   <mat-divider></mat-divider>
 </div>
