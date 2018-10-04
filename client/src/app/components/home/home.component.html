@@ -5,14 +5,14 @@
     <span class="app-name1">{{name1}}</span>
     <span class="app-name2">{{name2}}</span>
     <div class="firstDiv">
-     <button mat-button mat-icon-button >
+     <button mat-button mat-icon-button (click)="showDataSearch()">
        <i class="material-icons">
          search
         </i>
       </button>
-      <input class="searchBox" type="text" placeholder="Search">
-      <button mat-button mat-icon-button>
-      <i class="material-icons ">
+      <input class="searchBox" type="text" placeholder="Search" [(ngModel)]="searchData.data" (keyup)="onStatusChanged($event)" (click)="searchState()">
+      <button mat-button mat-icon-button (click)="clearSearch()">
+      <i class="material-icons">
         close
       </i>
     </button>
@@ -20,7 +20,7 @@
     <div class="afterSearchButton" style="margin-left:55px">
         <i class="material-icons">
             refresh
-            </i>
+        </i>
     </div>
     <div class="afterSearchButton" (click)="toggleView()">
         <i *ngIf="view == false" class="material-icons">

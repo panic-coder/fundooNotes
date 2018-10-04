@@ -47,6 +47,7 @@ export class NoteCardComponent implements OnInit {
   currentDate : any;
   labels = [];
   collabShow = false;
+  labelShow = false;
   months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   minDate = new Date();
   reminderOption = [
@@ -323,6 +324,9 @@ export class NoteCardComponent implements OnInit {
    }
    if(this.data.collaborators != null) {
      this.collabShow = true;
+   }
+   if(this.data.labels != null){
+     this.labelShow = true;
    }
    var date = new Date();
    this.currentDate = this.months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();

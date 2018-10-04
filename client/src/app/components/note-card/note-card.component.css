@@ -162,6 +162,17 @@
     border-radius: 15px;    
 }
 
+.labelDiv {
+    padding: 2px;
+}
+
+.labelDiv {
+    padding: 5px;
+    float: left;
+    font-size: 12px;
+    background-color: #e8e8e8
+}
+
 .innerDivCollab {
     text-align: center;
 }

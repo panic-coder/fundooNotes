@@ -74,8 +74,14 @@ export class CollaboratorDialogComponent implements OnInit {
       index = this.data.collaborators.findIndex(item => item.email == email)
       this.data.collaborators.splice(index,1);
       console.log(this.data.collaborators);
-      this.service.postRequest({"email":email},'deletecollab').subscribe((response: any) => {
+      this.service.updateRequest('updatenote', this.data._id, this.data).subscribe((updateResponse: any) => {
+        console.log(updateResponse);
+      })
+      this.service.postRequest({"email":email,"title":this.data.title},'deletecollab').subscribe((response: any) => {
         console.log(response);
+        this.service.deleteRequest('deletenote',response.doc._id).subscribe((collabDeleteResponse:any) => {
+          console.log(collabDeleteResponse);
+        })
       })
     }
 

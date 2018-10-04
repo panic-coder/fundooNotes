@@ -26,6 +26,8 @@ import { DataServiceService } from './services/data-service.service';
 import { CollaboratorDialogComponent } from './components/collaborator-dialog/collaborator-dialog.component';
 import { CreateLabelDialogComponent } from './components/create-label-dialog/create-label-dialog.component';
 import { LabelComponent } from './components/label/label.component';
+import { SearchComponent } from './components/search/search.component';
+import { SearchFilterPipe } from './search-filter.pipe';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -49,6 +51,8 @@ export function tokenGetter() {
     DialogOverviewExampleDialog,
     CollaboratorDialogComponent,
     CreateLabelDialogComponent,
+    SearchComponent,
+    SearchFilterPipe,
   ],
   entryComponents: [
     DialogOverviewExampleDialog,

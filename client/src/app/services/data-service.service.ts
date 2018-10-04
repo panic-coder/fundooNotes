@@ -7,12 +7,16 @@ import { BehaviorSubject } from 'rxjs';
 export class DataServiceService {
 
   label:any
+  search:any
 
   private messageSource = new BehaviorSubject(false);
   currentMessage = this.messageSource.asObservable();
 
   private labelSource = new BehaviorSubject(this.label)
   currentLabel = this.labelSource.asObservable();
+
+  private searchDataSource = new BehaviorSubject(this.search);
+  currentDataSearch = this.searchDataSource.asObservable();
 
   constructor() { }
 
@@ -23,6 +27,11 @@ export class DataServiceService {
   labelName(label: String) {
     this.label = label;
     this.labelSource.next(label);
+  }
+
+  searchData(search: String) {
+    this.search = search
+    this.searchDataSource.next(search);
   }
 
 }

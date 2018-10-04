@@ -418,10 +418,7 @@ router.put('/updateuser/:id', function(req, res) {
     var ObjectId = (require('mongoose').Types.ObjectId);
     var id = req.params.id
     var query = {'_id': new ObjectId(id)}
-
     User.findOne(query, (err, userData) => {
-        // console.log(req.body);
-        //  console.log(req.params.id);
         if(err){
             res.json({
                 success: false,
@@ -429,7 +426,6 @@ router.put('/updateuser/:id', function(req, res) {
                 status_code: 500
             })
         }
-        // console.log(note);
         userData.label = req.body ;
         userData.save();
         res.json({
@@ -464,8 +460,7 @@ router.put('/updateuser/:id', function(req, res) {
   })
 
   router.post('/deletecollab', function(req, res) {
-      console.log(req.body);
-      User.find(req.body, function(err, doc) {
+      User.find({"email": req.body.email}, function(err, doc) {
         if(err) {
             res.json({
                 success: false,
@@ -473,37 +468,31 @@ router.put('/updateuser/:id', function(req, res) {
             })
         }
 
-        Note.find({"userId":doc[0]._id}, function(err, docChat) {
-            if(err) {
-                res.json({
-                    success: false,
-                    success_code: 500
-                })  
-            }
-            docChat.forEach(element => {
-                if(element.collaborators != null){
-                    element.collaborators.forEach(elementCollab => {
-                        if(elementCollab.email == req.body.email){
-                            res.json({
-                                success: true,
-                                success_code: 200,
-                                doc: element
-                            })
-                        }
-                    })
+            Note.find({"userId":doc[0]._id}, function(err, docChat) {
+                if(err) {
+                    res.json({
+                        success: false,
+                        success_code: 500
+                    })  
                 }
-            });
-            // res.json({
-            //     success: true,
-            //     success_code: 200,
-            //     doc: docChat    
-            //   })
-
+                var foundDoc;
+                docChat.forEach(element => {
+                    if(element.collaborators != null){
+                        element.collaborators.forEach(elementCollab => {
+                            if(elementCollab.email == req.body.email && element.title == req.body.title){
+                                foundDoc = element;
+                            }
+                        })
+                    }
+                });
+                res.json({
+                    success: true,
+                    success_code: 200,
+                    doc: foundDoc    
+                })
+            })
         })
-
-        
-      })
-  })
+    })
 
 /**
  * @description Getting all the routes available in exports module

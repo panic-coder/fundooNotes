@@ -11,6 +11,7 @@ import { RemindersComponent } from './components/reminders/reminders.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { LabelComponent } from './components/label/label.component';
+import { SearchComponent } from './components/search/search.component';
 import { AuthGuardService as AuthGuard } from './auth/auth-guard.service';
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
     { path: 'reminders', component: RemindersComponent, canActivate:[AuthGuard]},
     { path: 'archive', component: ArchiveComponent, canActivate:[AuthGuard]},
     { path: 'trash', component: TrashComponent, canActivate:[AuthGuard]},
-    { path: 'label/:labelName', component: LabelComponent, canActivate:[AuthGuard]}
+    { path: 'label/:labelName', component: LabelComponent, canActivate:[AuthGuard]},
+    { path: 'search', component: SearchComponent, canActivate:[AuthGuard]}
   ]},
   { path: '**', redirectTo: '' }
 ]

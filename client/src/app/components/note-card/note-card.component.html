@@ -23,7 +23,11 @@
             {{item.name[0]}}
         </div>
       </div>
-      
+    </div>
+    <div *ngIf="labelShow" class="labelData">
+      <div *ngFor="let item of data.labels" class="labelDiv">
+          {{item.name}}
+      </div>
     </div>
   </div>
   <div class="icon">

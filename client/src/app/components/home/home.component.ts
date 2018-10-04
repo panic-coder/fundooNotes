@@ -25,6 +25,9 @@ export class HomeComponent implements OnInit {
   view=false;
   label = [];
   labels = [];
+  searchData = {
+    data:''
+  };
 
   ngOnInit() {
     const helper = new JwtHelperService();
@@ -45,6 +48,8 @@ export class HomeComponent implements OnInit {
     // this.raw_data.label.forEach(element => {
     //   this.labels.push(element.name);
     // });
+    console.log(this.searchData.data);
+
   }
 
   name1 = "Google"
@@ -136,5 +141,24 @@ export class HomeComponent implements OnInit {
   toggleView(){
     this.view = !this.view;
     this.data.changeMessage(this.view);
+  }
+
+  searchState() {
+    this.router.navigate(['home','search']);
+  }
+  showDataSearch() {
+    console.log(this.searchData);
+    this.data.searchData(this.searchData.data);
+
+  }
+
+  clearSearch() {
+    this.searchData.data = '';
+  }
+
+  onStatusChanged(finished: Boolean) {
+    if(finished) {
+      this.data.searchData(this.searchData.data);
+    }
   }
 }
