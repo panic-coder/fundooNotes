@@ -411,7 +411,7 @@ router.post('/collabEmailSearch', function(req, res) {
 })
 
   /**
- * @description API for updation of a note
+ * @description API for updation of a user
  */
 router.put('/updateuser/:id', function(req, res) {
     

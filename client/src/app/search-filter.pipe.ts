@@ -6,18 +6,25 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SearchFilterPipe implements PipeTransform {
 
   transform(values: any[], searchText: string): any[] {
+    var re = new RegExp(searchText);
     if(!values) return [];
     if(!searchText) return values;
     return values.filter((value) => {
       if(searchText.length >= 2) {
-        for (let i = 0; i < searchText.length; i++) {
-          console.log(value.title +'  '+searchText);
-  
-            if ((value.title[i] != searchText[i])) {
-                return false;
-            }
+        var outputTitle = (value.title).match(re)
+        var outputDescription = (value.description).match(re)
+        var titleFound = true;
+        var descriptionFound = true;
+        if(outputTitle == null) {
+          titleFound = false;
         }
-        return true;
+        if(outputDescription == null) {
+          descriptionFound = false;
+        }
+        if(titleFound || descriptionFound){
+          return true
+        }
+        return false;
       } else {
         return false
       }

@@ -20,19 +20,8 @@ export class SearchComponent implements OnInit {
     this.data.currentMessage.subscribe(message => this.view = message)
     this.data.currentDataSearch.subscribe((search:any) => {
       this.search = search
-      console.log(search);
     })
     this.readAll();
-  }
-
-  childStatusChanged(finished: boolean) {
-    if (finished){
-      this.data.currentDataSearch.subscribe((search:any) => {
-        this.search = search
-        console.log(search);
-      })
-      this.readAll();
-    }
   }
 
   readAll() {

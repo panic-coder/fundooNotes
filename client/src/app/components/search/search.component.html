@@ -1,3 +1,3 @@
 <div class="searchDiv" fxLayout="row wrap">
-    <app-note-card [ngClass]="{'card-grid': !view,'card-list': view}" [data] = data *ngFor="let data of notes | searchFilter : search" (onStatusChange)="childStatusChanged($event)"></app-note-card>
+    <app-note-card [ngClass]="{'card-grid': !view,'card-list': view}" [data] = data *ngFor="let data of notes | searchFilter : search"></app-note-card>
 </div>
