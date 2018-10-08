@@ -30,47 +30,49 @@
           view_module
         </i>
     </div>
-    <div class="toolLeftDiv" >
+    <div class="toolLeftDiv" fxLayout="row" >
         <!-- <a href="www.google.co.in"> -->
-          <button mat-button mat-icon-button >  
-                <i class="material-icons ">
-                    apps
-                    </i>
-              
-          </button>
+          <div>
+              <button mat-button mat-icon-button >  
+                  <i class="material-icons ">
+                      apps
+                      </i>
+                
+            </button>
+          </div>
+          
         <!-- </a> -->
-          <button mat-button mat-icon-button>
+        <div>
+            <button mat-button mat-icon-button>
                 <i class="material-icons">
                     notifications
                     </i>
               
           </button>
         </div>
-<div class="leftButton">
-    <button mat-button mat-icon-button (click) = "signoutCard()">
-        <!-- <i class="material-icons">
-            exit_to_app
-            </i> -->
-            <div class="signoutDiv">{{firstCharacter}}</div>
-            <!-- <i class="material-icons">
-                panorama_fish_eye
-                </i> -->
-    </button>
-    <!-- <mat-card *ngIf="sign" class="signout">
         <div>
-          <div>
-            
-          </div>
-          <div></div>
-          <div></div>
+            <button mat-button mat-icon-button (click) = "signoutCard()">
+                    <div *ngIf="!profilePicShow" class="signoutDiv">{{firstCharacter}}</div>
+                    <div *ngIf="profilePicShow" class="signoutDivPhoto">
+                        <img [src]="profilePicData" />
+                    </div>
+            </button>
         </div>
-        </mat-card> -->
+        </div>
         
-</div>
 <mat-card *ngIf="sign" (click)="signoutCard()" class="signout">
-  
-  <div class="signOuterDiv">
-        <div class="imageDiv"><p class="imgBig">{{firstCharacter}}</p></div>
+  <div class="signOuterDiv" fxLayout="row">
+    <div fxLayout="column">
+        <div *ngIf="!profilePicShow" class="imageDiv"><p class="imgBig">{{firstCharacter}}</p>
+        </div>
+        <div *ngIf="profilePicShow" class="imageDiv">
+            <img [src]="profilePicData" />
+        </div>
+        <div style="font-size:13px;cursor: pointer;" (click)="changeImage()">
+          change image
+        </div>
+    </div>
+        <div>
         <div class="nameEmail">
         <div class="username">
             {{name}}
@@ -81,7 +83,8 @@
           <div>
               <button class="signoutButton" mat-raised-button  (click)="signout()">signout</button>
             </div>
-        </div>  
+        </div> 
+      </div> 
   </div>
    
   </mat-card>

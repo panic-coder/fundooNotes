@@ -30,6 +30,9 @@ var UserSchema = new mongoose.Schema({
     label: [{
         name: String
     }],
+    profilePicture: {
+        type: String
+    },
     resetPasswordToken: String,
     resetPasswordExpires: Date
 }, {collection: 'userInfo'})

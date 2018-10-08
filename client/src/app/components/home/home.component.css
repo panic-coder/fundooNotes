@@ -107,6 +107,7 @@
 }
 
 .toolLeftDiv {
+  margin-top: 60px;
   margin-left: 60px;
   
 }
@@ -138,22 +139,18 @@
   background-color: lightgray;
   color: black;
   overflow: hidden;
-  /* color: black; */
-  /* margin-top: 9px; */
 }
-
-.leftButton {
-  /* margin-top: 10px; */
-  /*   */
-  /* padding: 5px */
-  /* margin-top: 9px; */
-  /* margin-right: 20px; */
-  /* padding-right: 20px; */
+.signoutDivPhoto {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  overflow: hidden;
 }
 
 .signout {
   position: absolute;
-  height: 98px;
+  height: 110px;
   width: 320px;
   margin-top: 110px;
   float: right;
@@ -179,8 +176,8 @@
 }
 
 .imageDiv {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   background-color: lightgray;
   color: black;
@@ -188,6 +185,10 @@
   position: relative;
   float:left;
   text-align: center;
+}
+
+.changeImage {
+  position: absolute;
 }
 
 .signOuterDiv {
@@ -201,7 +202,7 @@
 }
 
 .imgBig {
-  margin-top: 30px;
+  margin-top: 20px;
   font-size: 45px;
   font-weight: normal;
   opacity: 0.7;

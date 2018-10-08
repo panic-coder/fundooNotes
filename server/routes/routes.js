@@ -76,6 +76,7 @@ router.post('/login', (req,res) => {
                             name: doc.name,
                             email: doc.email,
                             label: doc.label,
+                            profilePicture: doc.profilePicture,
                           }, 'secret', { expiresIn: '24h' })
                         res.json({
                             success: true,
@@ -490,6 +491,29 @@ router.put('/updateuser/:id', function(req, res) {
                     success_code: 200,
                     doc: foundDoc    
                 })
+            })
+        })
+    })
+
+    router.put('/profilepicupload/:id', function(req, res) {
+        var ObjectId = (require('mongoose').Types.ObjectId);
+        var id = req.params.id
+        var query = {'_id': new ObjectId(id)}
+        User.findOne(query, (err, userData) => {
+            if(err){
+                res.json({
+                    success: false,
+                    msg: "Something went wrong",
+                    status_code: 500
+                })
+            }
+            userData.profilePicture = req.body.image ;
+            userData.save();
+            res.json({
+                success: true,
+                msg: "Successfully updated",
+                data: userData,
+                status_code: 200
             })
         })
     })

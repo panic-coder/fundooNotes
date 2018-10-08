@@ -28,6 +28,9 @@ import { CreateLabelDialogComponent } from './components/create-label-dialog/cre
 import { LabelComponent } from './components/label/label.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchFilterPipe } from './search-filter.pipe';
+import { ChangeImageDialogComponent } from './components/change-image-dialog/change-image-dialog.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -53,11 +56,13 @@ export function tokenGetter() {
     CreateLabelDialogComponent,
     SearchComponent,
     SearchFilterPipe,
+    ChangeImageDialogComponent,
   ],
   entryComponents: [
     DialogOverviewExampleDialog,
     CollaboratorDialogComponent,
-    CreateLabelDialogComponent
+    CreateLabelDialogComponent,
+    ChangeImageDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +72,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     LayoutModule,
     FlexLayoutModule,
+    ImageCropperModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

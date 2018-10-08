@@ -24,7 +24,9 @@ export class NotesComponent implements OnInit {
   constructor(private service: AppService,private data:DataServiceService) { }
 
   ngOnInit() {
-    this.data.currentMessage.subscribe(message => this.view = message)
+    this.data.currentMessage.subscribe((message:any) => {
+      this.view = message 
+    })
     this.readAll();
   }
 

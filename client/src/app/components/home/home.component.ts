@@ -6,6 +6,7 @@ import { CreateLabelDialogComponent } from '../create-label-dialog/create-label-
 import { MatDialog } from '@angular/material';
 import { AppService } from '../../services/app.service';
 import { syntaxError } from '@angular/compiler';
+import { ChangeImageDialogComponent } from '../change-image-dialog/change-image-dialog.component';
 
 @Component({
   selector: 'home',
@@ -28,12 +29,12 @@ export class HomeComponent implements OnInit {
   searchData = {
     data:''
   };
-
+  profilePicShow = false;
+  profilePicData = '';
   ngOnInit() {
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(localStorage.getItem('token'));
     this.raw_data = decodedToken;
-    console.log(this.raw_data);
     localStorage.setItem('name',this.raw_data.name);
     localStorage.setItem('id',this.raw_data.data);
     var user = localStorage.getItem('name');
@@ -45,6 +46,11 @@ export class HomeComponent implements OnInit {
         this.labels.push(element.name);  
       });
     })
+    
+    if(this.raw_data.profilePicture != null) {
+      this.profilePicShow = !this.profilePicShow;
+      this.profilePicData = this.raw_data.profilePicture;
+    }
     // this.raw_data.label.forEach(element => {
     //   this.labels.push(element.name);
     // });
@@ -149,7 +155,6 @@ export class HomeComponent implements OnInit {
   showDataSearch() {
     console.log(this.searchData);
     this.data.searchData(this.searchData.data);
-
   }
 
   clearSearch() {
@@ -160,5 +165,22 @@ export class HomeComponent implements OnInit {
     if(finished) {
       this.data.searchData(this.searchData.data);
     }
+  }
+
+  changeImage():  void {
+      const dialogRef = this.dialog.open(ChangeImageDialogComponent, {
+        width: '80%',
+        height: '80%',
+        data: this.data,
+        disableClose: true
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result.image);
+        var id = localStorage.getItem('id');
+        this.service.updateRequest('profilepicupload', id, {"image": result.image}).subscribe((profilePicUpload: any) => {
+          console.log(profilePicUpload);
+        })
+      });
   }
 }
