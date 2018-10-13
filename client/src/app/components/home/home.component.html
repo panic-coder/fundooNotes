@@ -51,10 +51,10 @@
           </button>
         </div>
         <div>
-            <button mat-button mat-icon-button (click) = "signoutCard()">
+            <button mat-icon-button style="background-color:none" (click) = "signoutCard()">
                     <div *ngIf="!profilePicShow" class="signoutDiv">{{firstCharacter}}</div>
                     <div *ngIf="profilePicShow" class="signoutDivPhoto">
-                        <img [src]="profilePicData" />
+                        <img style="height:40px;width:40px;" [src]="profilePicData"/>
                     </div>
             </button>
         </div>
@@ -66,7 +66,7 @@
         <div *ngIf="!profilePicShow" class="imageDiv"><p class="imgBig">{{firstCharacter}}</p>
         </div>
         <div *ngIf="profilePicShow" class="imageDiv">
-            <img [src]="profilePicData" />
+            <img style="height:80px;width:80px;" [src]="profilePicData" />
         </div>
         <div style="font-size:13px;cursor: pointer;" (click)="changeImage()">
           change image

@@ -107,7 +107,7 @@
 }
 
 .toolLeftDiv {
-  margin-top: 60px;
+  /* margin-top: 60px; */
   margin-left: 60px;
   
 }
@@ -144,7 +144,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: white;
+  background-color: none;
   overflow: hidden;
 }
 

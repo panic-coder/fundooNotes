@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
       });
     })
     
-    if(this.raw_data.profilePicture != null) {
+    if(this.raw_data.profilePicture != '' || this.raw_data.profilePicture != null) {
       this.profilePicShow = !this.profilePicShow;
       this.profilePicData = this.raw_data.profilePicture;
     }
@@ -176,10 +176,10 @@ export class HomeComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe(result => {
-        console.log(result.image);
         var id = localStorage.getItem('id');
         this.service.updateRequest('profilepicupload', id, {"image": result.image}).subscribe((profilePicUpload: any) => {
           console.log(profilePicUpload);
+          this.profilePicData = result.image;
         })
       });
   }
