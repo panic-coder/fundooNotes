@@ -101,6 +101,10 @@ router.post('/login', (req,res) => {
  * @description API for forgot password
  */
 router.post('/forgot', (req, res, next) => {
+    console.log(process.env.email);
+    console.log(process.env.password);
+    
+    
     async.waterfall([
         function(done) {
             jwt.sign({
@@ -135,13 +139,13 @@ router.post('/forgot', (req, res, next) => {
             var smtpTransport = nodemailer.createTransport({
               service: 'Gmail',
               auth: {
-                user: 'utility.services.development@gmail.com',
-                pass: 'bridgeit0'
+                user: process.env.email,
+                pass: process.env.password
               }
             });
             var mailOptions = {
               to: user.email,
-              from: 'utility.services.development@gmail.com',
+              from: process.env.email,
               subject: 'Node.js Password Reset',
               text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                 'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
