@@ -242,13 +242,13 @@ router.post('/reset', function(req, res) {
         var smtpTransport = nodemailer.createTransport( {
           service: 'Gmail',
           auth: {
-            user: 'utility.services.development@gmail.com',
-            pass: 'bridgeit0'
+            user: process.env.email,
+            pass: process.env.password
           }
         });
         var mailOptions = {
           to: user.email,
-          from: 'utility.services.development.com',
+          from: process.env.email,
           subject: 'Your password has been changed',
           text: 'Hello,\n\n' +
             'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
@@ -517,6 +517,8 @@ router.put('/updateuser/:id', function(req, res) {
             })
         })
     })
+
+    
 
 /**
  * @description Getting all the routes available in exports module
