@@ -101,15 +101,7 @@ router.post('/login', (req,res) => {
  * @description API for forgot password
  */
 router.post('/forgot', (req, res, next) => {
-    var email = req.body.email;
-    console.log(email);
     async.waterfall([
-        // function(done) {
-        //     crypto.randomBytes(20, function(err, buf) {
-        //         var token = buf.toString('hex');
-        //         done(err, token);
-        //       });
-        // },
         function(done) {
             jwt.sign({
                 data: req.body.email
@@ -122,14 +114,9 @@ router.post('/forgot', (req, res, next) => {
             "email": req.body.email
         }, function (err, user) {
             if(err) {
-                // res.json({
-                //     success: false,
-                //     msg: "Not a registered user",
-                //     status_code: 404
-                // })
+                console.log(err);
             }
             if (!user) {
-                // res.flash('error', 'No account with that email address exists.');
                 res.json({
                     success: false,
                     msg: "No acount with entered email address exists",
@@ -138,9 +125,6 @@ router.post('/forgot', (req, res, next) => {
               }
             user.resetPasswordToken = token;
             user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-
-            //var data = new User(req.body);
-            
             user.save(function(err) {
                 if(err) throw err;
                 done(err, token, user);
@@ -165,7 +149,6 @@ router.post('/forgot', (req, res, next) => {
                 'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
             smtpTransport.sendMail(mailOptions, function(err) {
-            //   res.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
             res.json({
                 success: true,
                 msg: 'An e-mail has been sent to ' + user.email + ' with further instructions.',
@@ -176,7 +159,6 @@ router.post('/forgot', (req, res, next) => {
           }
     ], function(err) {
         if (err) return next(err);
-        //   res.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
         res.json({
             success: false,
             msg: "Something went wrong",
@@ -216,14 +198,9 @@ router.post('/reset', function(req, res) {
                         status_code:404
                    })
                 }
-        
-                //user.password = req.body.password;
                 user.resetPasswordToken = undefined;
                 bcrypt.genSalt(saltRounds, function(err, salt) {
-                    console.log(salt);
-                    
                     bcrypt.hash(req.body.password, salt, function(err, hash) {
-                        // Store hash in your password DB.
                         if(err) {
                             return;
                         } 
@@ -233,8 +210,6 @@ router.post('/reset', function(req, res) {
                             });                    
                         });
                 });
-                //user.resetPasswordExpires = undefined;
-        
               });
         });
       },
@@ -275,7 +250,6 @@ router.post('/reset', function(req, res) {
  * @description API for saving of notes
  */
   router.post('/savenote', function(req, res) {
-    //   console.log(req.body);
       var newNote = new Note(req.body)
       Note.createNote(newNote, (err) => {
           if(err){
@@ -293,18 +267,13 @@ router.post('/reset', function(req, res) {
               })
           }
       });
-      
   })
-
 
 /**
  * @description API for updation of a note
  */
   router.put('/updatenote/:id', function(req, res) {
     Note.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, note) => {
-        // console.log(req.body);
-        //  console.log(req.params.id);
-
         if(err){
             res.json({
                 success: false,
@@ -312,8 +281,6 @@ router.post('/reset', function(req, res) {
                 status_code: 500
             })
         }
-        // console.log(note);
-        
         res.json({
             success: true,
             msg: "Successfully updated",
@@ -411,7 +378,7 @@ router.post('/collabEmailSearch', function(req, res) {
     })
 })
 
-  /**
+/**
  * @description API for updation of a user
  */
 router.put('/updateuser/:id', function(req, res) {
@@ -438,6 +405,9 @@ router.put('/updateuser/:id', function(req, res) {
     })
   })
 
+  /**
+   * @description API for getting all label according to the user
+   */
   router.get('/getLabels/:id', function(req, res) {
     var ObjectId = (require('mongoose').Types.ObjectId);
     var id = req.params.id
@@ -460,6 +430,9 @@ router.put('/updateuser/:id', function(req, res) {
     })
   })
 
+  /**
+   * @description API for removing collaboration
+   */
   router.post('/deletecollab', function(req, res) {
       User.find({"email": req.body.email}, function(err, doc) {
         if(err) {
@@ -495,6 +468,9 @@ router.put('/updateuser/:id', function(req, res) {
         })
     })
 
+    /**
+     * @description API for profile picture upload
+     */
     router.put('/profilepicupload/:id', function(req, res) {
         var ObjectId = (require('mongoose').Types.ObjectId);
         var id = req.params.id
